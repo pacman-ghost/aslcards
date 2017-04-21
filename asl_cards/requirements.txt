@@ -1,2 +1,4 @@
 # python == 3.6.1
 pdfminer.six == 20170419
+python3-ghostscript == 0.5.0
+Pillow == 4.1.0

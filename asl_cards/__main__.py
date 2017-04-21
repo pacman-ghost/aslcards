@@ -20,7 +20,7 @@ def main( args ) :
             pdf_parser = PdfParser( progress_callback )
             cards = pdf_parser.parse_file( val )
             for c in cards :
-                print( c )
+                print( "{} ; img:{} bytes".format( c[0] , len(c[1]) ) )
         elif opt in ("-d","--dir") :
             pdf_parser = PdfParser( progress_callback )
             fcards = pdf_parser.parse_dir( val )

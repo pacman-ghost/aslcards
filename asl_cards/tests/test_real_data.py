@@ -21,13 +21,38 @@ class TestRealData( unittest.TestCase ) :
         pdf_parser = PdfParser(
             #progress = lambda _,msg: print( msg , file=sys.stderr )
         )
-        cards = pdf_parser.parse_file( fname2 )
+        cards = pdf_parser.parse_file( fname2 , images=False )
         # check the results
         if len(cards) != len(expected_cards) :
             raise RuntimeError( "{}: got {} cards, expected {}.".format( fname , len(cards) , len(expected_cards) ) )
         for i in range(0,len(cards)) :
             if cards[i] != expected_cards[i] :
                 raise RuntimeError( "{}: Card mismatch ({}): got {}, expected {}.".format( fname , i , cards[i] , expected_cards[i] ) )
+
+    def test_italian_ordnance( self ) :
+        self._test_pdf_parser( "ItalianOrdnance.pdf" , [
+            AslCard(page_id=1, page_pos=0, tag="Ordnance5#51", nationality="Italian", name="Mortaio5da545") ,
+            AslCard(page_id=1, page_pos=1, tag="Ordnance5#52", nationality="Italian", name="Mortaio5da581/14") ,
+            AslCard(page_id=2, page_pos=0, tag="Ordnance3#33", nationality="Italian", name="Fucile9cc3S") ,
+            AslCard(page_id=2, page_pos=1, tag="Ordnance3#34", nationality="Italian", name="Cannone9cc3da337/45") ,
+            AslCard(page_id=3, page_pos=0, tag="Ordnance3#35", nationality="Italian", name="Cannone3da347/32") ,
+            AslCard(page_id=3, page_pos=1, tag="Ordnance3#36", nationality="Italian", name="Cannone3da365/17") ,
+            AslCard(page_id=4, page_pos=0, tag="Ordnance5#57", nationality="Italian", name="Cannone5da570/15") ,
+            AslCard(page_id=4, page_pos=1, tag="Ordnance5#58", nationality="Italian", name="Obice5da575/13") ,
+            AslCard(page_id=5, page_pos=0, tag="Ordnance1#19", nationality="Italian", name="Cannone1da175/27") ,
+            AslCard(page_id=5, page_pos=1, tag="Ordnance1#110", nationality="Italian", name="Obice1da175/18") ,
+            AslCard(page_id=6, page_pos=0, tag="Ordnance6#611", nationality="Italian", name="Cannone6da675/32") ,
+            AslCard(page_id=6, page_pos=1, tag="Ordnance6#612", nationality="Italian", name="Obice6da6100/17") ,
+            AslCard(page_id=7, page_pos=0, tag="Ordnance2#213", nationality="Italian", name="Cannone2da2105/28") ,
+            AslCard(page_id=7, page_pos=1, tag="Ordnance2#214", nationality="Italian", name="Obice2da2149/13") ,
+            AslCard(page_id=8, page_pos=0, tag="Ordnance2#215", nationality="Italian", name="Cannone2da2149/35") ,
+            AslCard(page_id=8, page_pos=1, tag="Ordnance2#216", nationality="Italian", name="Cannone2da2149/40") ,
+            AslCard(page_id=9, page_pos=0, tag="Ordnance #17", nationality="Italian", name="Cannone6mitr  20") ,
+            AslCard(page_id=9, page_pos=1, tag="Ordnance #17", nationality="Italian", name="Cannone6mitr  20  LF") ,
+            AslCard(page_id=10, page_pos=0, tag="Ordnance1#118", nationality="Italian", name="Cannone0aa175/39") ,
+            AslCard(page_id=10, page_pos=1, tag="Ordnance1#119", nationality="Italian", name="Cannone0aa175/46") ,
+            AslCard(page_id=11, page_pos=0, tag="Ordnance*#*20", nationality="Italian", name="Cannone3aa*90/53") ,
+        ] )
 
     def test_japanese_vehicles( self ) :
         self._test_pdf_parser( "JapaneseVehiclesFeb15.pdf" , [
