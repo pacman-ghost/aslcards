@@ -14,12 +14,7 @@ from pdfminer.pdfpage import PDFPage
 import ghostscript
 from PIL import Image , ImageChops
 
-# ---------------------------------------------------------------------
-
-AslCard = namedtuple(
-    "AslCard" ,
-    [ "page_id" , "page_pos" , "tag" , "nationality" , "name" ]
-)
+from db import AslCard , AslCardImage
 
 # ---------------------------------------------------------------------
 
@@ -29,18 +24,24 @@ class PdfParser:
         # initialize
         self.progress = progress
 
-    def parse_dir( self , dname , progress=None ) :
-        """Parse all PDF's in a directory."""
-        fcards = {}
-        for fname in os.listdir(dname) :
-            if os.path.splitext(fname)[1].lower() != ".pdf" :
-                continue
-            cards = self.parse_file( os.path.join(dname,fname) )
-            fcards[fname] = cards
-        return fcards
-
-    def parse_file( self , fname , images=True ) :
+    def parse( self , target , max_pages=-1 , images=True ) :
         """Extract the cards from a PDF file."""
+        # locate the files we're going to parse
+        if os.path.isfile( target ) :
+            fnames = [ target ]
+        else :
+            fnames = [
+                os.path.join( target , f )
+                for f in os.listdir( target )
+                if os.path.splitext( f )[1].lower() == ".pdf"
+            ]
+        # parse each file
+        cards = []
+        for fname in fnames :
+            cards.extend( self._do_parse_file( fname , max_pages , images ) )
+        return cards
+
+    def _do_parse_file( self , fname , max_pages , images ) :
         # extract the details of each card
         rmgr = PDFResourceManager()
         laparams = LAParams()
@@ -51,18 +52,20 @@ class PdfParser:
             self._progress( 0 , "Loading file: {}".format( fname ) )
             pages = list( PDFPage.get_pages( fp ) )
             for page_no,page in enumerate(pages) :
-                self._progress( float(page_no)/len(pages) , "Processing page {}...".format( 1+page_no ) )
+                self._progress( float(page_no)/len(pages) , "Extracting card info from page {}...".format( 1+page_no ) )
                 page_cards = self._parse_page( cards , interp , page_no , page )
                 cards.extend( page_cards )
+                if max_pages > 0 and 1+page_no >= max_pages :
+                    break
         self._progress( 1.0 , "Done." )
         # extract the card images
         if images :
-            card_images = self._extract_images( fname )
+            card_images = self._extract_images( fname , max_pages )
             if len(cards) != len(card_images) :
                 raise RuntimeError( "Found {} cards, {} card images.".format( len(cards) , len(card_images) ) )
-            return zip( cards , card_images )
-        else :
-            return cards
+            for i in range(0,len(cards)) :
+                cards[i].card_image = AslCardImage( image_data=card_images[i] )
+        return cards
 
     def _parse_page( self , cards , interp , page_no , page ) :
         """Extract the cards from a PDF page."""
@@ -106,13 +109,14 @@ class PdfParser:
         # generate the AslCard
         page_pos = 0 if items[0].y0 > lt_page.height/2 else 1
         return AslCard(
-            lt_page.pageid , page_pos ,
-            _tidy( item_texts[0] ).replace( "# ", "#" ) ,
-            _tidy( item_texts[1] ) ,
-            _tidy( item_texts[2] )
+            tag = _tidy( item_texts[0] ).replace( "# ", "#" ) ,
+            nationality = _tidy( item_texts[1] ) ,
+            name = _tidy( item_texts[2] ) ,
+            page_id = lt_page.pageid ,
+            page_pos = page_pos ,
         )
 
-    def _extract_images( self , fname ) :
+    def _extract_images( self , fname , max_pages ) :
         """Extract card images from a file."""
         # extract each page from the PDF as an image
         fname_template = os.path.join( tempfile.gettempdir() , "asl_cards-%d.png" )
@@ -121,8 +125,11 @@ class PdfParser:
             "_ignored_" , "-dQUIET" , "-dSAFER" , "-dNOPAUSE" ,
             "-sDEVICE=png16m" , "-r"+str(resolution) ,
             "-sOutputFile="+fname_template ,
-            "-f" , fname
         ]
+        if max_pages > 0 :
+            args.append( "-dLastPage={}".format(max_pages) )
+        args.extend( [ "-f" , fname ] )
+        # FIXME! clean up left-over temp files before we start
         args = [ s.encode(locale.getpreferredencoding()) for s in args ]
         # FIXME! stop GhostScript from issuing warnings (stdout).
         self._progress( 0 , "Extracting images..." )
@@ -138,7 +145,7 @@ class PdfParser:
         card_images = []
         for page_no in range(0,npages) :
             # open the next page image
-            self._progress( float(page_no)/npages , "Processing page {}...".format( 1+page_no ) )
+            self._progress( float(page_no)/npages , "Extracting card images from page {}...".format( 1+page_no ) )
             fname = fname_template % (1+page_no)
             img = Image.open( fname )
             img_width , img_height = img.size
@@ -186,7 +193,7 @@ class PdfParser:
         rgn.save( fname )
         with open( fname , "rb" ) as fp :
             buf = fp.read()
-        #os.unlink( fname )
+        os.unlink( fname )
         return buf , rgn.size
 
     def _progress( self , progress , msg ) :
