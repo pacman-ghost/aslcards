@@ -9,6 +9,7 @@ from PyQt5.QtWidgets import QApplication
 
 from constants import *
 import globals
+import asl_cards.db as db
 
 # ---------------------------------------------------------------------
 
@@ -27,10 +28,13 @@ def do_main( args ) :
 
     # parse the command-line arguments
     settings_fname = None
-    opts , args = getopt.getopt( args[1:] , "c:h?" , ["config=","help"] )
+    db_fname = None
+    opts , args = getopt.getopt( args[1:] , "c:d:h?" , ["config=","db=","help"] )
     for opt,val in opts :
         if opt in ["-c","--config"] :
             settings_fname = val
+        elif opt in ["-d","--db"] :
+            db_fname = val
         elif opt in ["-h","--help","-?"] :
             print_help()
         else :
@@ -43,11 +47,20 @@ def do_main( args ) :
             if sys.platform != "win32" :
                 settings_fname = "." + settings_fname
             settings_fname = os.path.join( QDir.homePath() , settings_fname  )
+    if not db_fname :
+        # try to locate the database
+        db_fname = os.path.join( globals.base_dir , globals.app_name+".db" )
+    if not os.path.isfile( db_fname ) :
+        raise RuntimeError( "Can't find database: {}".format( db_fname ) )
 
     # load our settings
     globals.app_settings = QSettings( settings_fname , QSettings.IniFormat )
     fname = os.path.join( os.path.split(settings_fname)[0] , "debug.ini" )
     globals.debug_settings = QSettings( fname , QSettings.IniFormat )
+
+    # open the database
+    db.open_database( db_fname )
+    globals.cards = db.load_cards()
 
     # do main processing
     app = QApplication( sys.argv )

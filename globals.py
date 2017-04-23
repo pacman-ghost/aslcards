@@ -5,3 +5,6 @@ app_name = None
 # application settings
 app_settings = None
 debug_settings = None
+
+# AslCard table
+card = {} # { nationality: { "ordnance|vehicle": [ AslCard's ] } }

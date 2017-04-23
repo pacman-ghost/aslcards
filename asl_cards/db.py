@@ -1,5 +1,6 @@
 import sys
 import os
+from collections import defaultdict
 from sqlalchemy import sql , orm , create_engine
 from sqlalchemy import Column , ForeignKey , String , Integer , Binary
 
@@ -63,7 +64,7 @@ def open_database( fname ) :
     conn_string = "sqlite:///{}".format( fname )
     global db_engine
     db_engine = create_engine( conn_string , convert_unicode=True )
-    #db_engine.echo = True 
+    #db_engine.echo = True
 
     # initialize our session
     global db_session
@@ -89,8 +90,37 @@ def add_cards( cards ) :
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+def load_cards() :
+    """Load the cards from the database."""
+    # load the raw rows
+    query = db_session.query( AslCard )
+    cards =  list( query.all() )
+    card_index = defaultdict( lambda: defaultdict(list) )
+    # generate the card index
+    for card in cards :
+        d = card_index[ card.nationality ]
+        tag = card.tag.lower()
+        if tag.startswith( "ordnance" ) :
+            tag_type = "ordnance"
+        elif tag.startswith( "vehicle" ) :
+            tag_type = "vehicle"
+        else :
+            raise RuntimeError( "Unknown tag type ({}) for AslCard: {}".format( tag , card ) )
+        d[ tag_type ].append( card )
+    return card_index
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+def dump_cards( cards ) :
+    """Dump the card index."""
+    for nationality in cards :
+        for tag_type in cards[nationality] :
+            print( "{} ({}):".format( nationality  , tag_type ) )
+            for card in cards[nationality][tag_type] :
+                print( "- {}".format( card ) )
+
 def dump_database() :
-    """Dump the database."""
+    """Dump the raw database rows."""
     # dump the ASL cards
     query = db_session.query( AslCard )
     for card in query.all() :
