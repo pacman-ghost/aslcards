@@ -1,0 +1,5 @@
+# python == 3.6.1
+
+# NOTE: There are additional requirements for the asl_cards module (see its requirements.txt).
+PyQt5 == 5.8.2
+cx-Freeze == 5.0.1

@@ -1,3 +1,6 @@
+app.ini
+debug.ini
+
 .venv-*
 __pycache__/
 *.py[cod]
