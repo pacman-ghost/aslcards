@@ -37,7 +37,7 @@ class AslCard( DbBase , DbBaseMixin ) :
     """Models an ASL card."""
     __tablename__ = "card"
     card_id = Column( Integer , primary_key=True , autoincrement=True )
-    tag = Column( String(40) )
+    card_tag = Column( String(40) )
     nationality = Column( String(40) )
     name = Column( String(40) )
     page_id = Column( Integer )
@@ -102,15 +102,15 @@ def load_cards() :
     card_index = defaultdict( lambda: defaultdict(list) )
     # generate the card index
     for card in cards :
-        d = card_index[ card.nationality ]
-        tag = card.tag.lower()
-        if tag.startswith( "vehicle" ) :
+        cards2 = card_index[ card.nationality ]
+        card_tag = card.card_tag.lower()
+        if card_tag.startswith( "vehicle" ) :
             tag_type = TAGTYPE_VEHICLE
-        elif tag.startswith( "ordnance" ) :
+        elif card_tag.startswith( "ordnance" ) :
             tag_type = TAGTYPE_ORDNANCE
         else :
-            raise RuntimeError( "Unknown tag type ({}) for AslCard: {}".format( tag , card ) )
-        d[ tag_type ].append( card )
+            raise RuntimeError( "Invalid card tag ({}) for AslCard: {}".format( card_tag , card ) )
+        cards2[ tag_type ].append( card )
     return card_index
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

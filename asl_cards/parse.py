@@ -109,7 +109,7 @@ class PdfParser:
         # generate the AslCard
         page_pos = 0 if items[0].y0 > lt_page.height/2 else 1
         return AslCard(
-            tag = _tidy( item_texts[0] ).replace( "# ", "#" ) ,
+            card_tag = _tidy( item_texts[0] ).replace( "# ", "#" ) ,
             nationality = _tidy( item_texts[1] ) ,
             name = _tidy( item_texts[2] ) ,
             page_id = lt_page.pageid ,
