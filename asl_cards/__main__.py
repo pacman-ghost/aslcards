@@ -40,6 +40,7 @@ def main( args ) :
             log_progress = True
         elif opt in ["-h","--help","-?"] :
             print_help()
+            sys.exit( 0 )
         else :
             raise RuntimeError( "Unknown argument: {}".format( opt ) )
     if not db_fname : raise RuntimeError( "No database was specified." )

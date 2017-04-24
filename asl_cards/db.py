@@ -6,6 +6,10 @@ from sqlalchemy import Column , ForeignKey , String , Integer , Binary
 
 # ---------------------------------------------------------------------
 
+# tag types
+TAGTYPE_VEHICLE = "vehicle"
+TAGTYPE_ORDNANCE = "ordnance"
+
 db_engine = None
 db_session = None
 
@@ -100,10 +104,10 @@ def load_cards() :
     for card in cards :
         d = card_index[ card.nationality ]
         tag = card.tag.lower()
-        if tag.startswith( "ordnance" ) :
-            tag_type = "ordnance"
-        elif tag.startswith( "vehicle" ) :
-            tag_type = "vehicle"
+        if tag.startswith( "vehicle" ) :
+            tag_type = TAGTYPE_VEHICLE
+        elif tag.startswith( "ordnance" ) :
+            tag_type = TAGTYPE_ORDNANCE
         else :
             raise RuntimeError( "Unknown tag type ({}) for AslCard: {}".format( tag , card ) )
         d[ tag_type ].append( card )

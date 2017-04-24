@@ -7,4 +7,4 @@ app_settings = None
 debug_settings = None
 
 # AslCard table
-card = {} # { nationality: { "ordnance|vehicle": [ AslCard's ] } }
+card = {} # { nationality: { tag-type: [ AslCard's ] } }
