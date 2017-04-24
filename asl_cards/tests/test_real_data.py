@@ -87,6 +87,32 @@ class TestRealData( unittest.TestCase ) :
             AslCard(page_id=12, page_pos=1, card_tag="Vehicle #18", nationality="Japanese", name="Type 97 Truck") ,
         ] )
 
+    def test_chinese_vehicles( self ) :
+        self._test_pdf_parser( "ChineseVehiclesFeb15.pdf" , [
+            AslCard( card_tag="Vehicle #1", nationality="Chinese", name="VCL M1931  b", page_id=1, page_pos=0 ) ,
+            AslCard( card_tag="Vehicle #2", nationality="Chinese", name="L3/35  i", page_id=1, page_pos=1 ) ,
+            AslCard( card_tag="Vehicle1#13", nationality="Chinese", name="PzKpfw1IA1 g", page_id=2, page_pos=0 ) ,
+            AslCard( card_tag="Vehicle1#14", nationality="Chinese", name="Vickers1Mk1E1 b", page_id=2, page_pos=1 ) ,
+            AslCard( card_tag="Vehicle #5", nationality="Chinese", name="T826TU M33  r", page_id=3, page_pos=0 ) ,
+            AslCard( card_tag="Vehicle #6", nationality="Chinese", name="M3A3  a", page_id=3, page_pos=1 ) ,
+            AslCard( card_tag="Vehicle*#*7", nationality="Chinese", name="M4A4* a", page_id=4, page_pos=0 ) ,
+            AslCard( card_tag="Vehicle*#*8", nationality="Chinese", name="M3A1* a", page_id=4, page_pos=1 ) ,
+            AslCard( card_tag="Vehicle #9", nationality="Chinese", name="Stuart Recon  a", page_id=5, page_pos=0 ) ,
+            AslCard( card_tag="Vehicle #10", nationality="Chinese", name="Type 22", page_id=5, page_pos=1 ) ,
+            AslCard( card_tag="Vehicle*#*11", nationality="Chinese", name="PSW*221* g", page_id=6, page_pos=0 ) ,
+            AslCard( card_tag="Vehicle*#*11", nationality="Chinese", name="PSW*222* g", page_id=6, page_pos=1 ) ,
+            AslCard( card_tag="Vehicle0#012", nationality="Chinese", name="BA8200 r", page_id=7, page_pos=0 ) ,
+            AslCard( card_tag="Vehicle0#012", nationality="Chinese", name="BA860 r", page_id=7, page_pos=1 ) ,
+            AslCard( card_tag="Vehicle*#*13", nationality="Chinese", name="Carrier *VCL*Mk*VI* b", page_id=8, page_pos=0 ) ,
+            AslCard( card_tag="Vehicle*#*14", nationality="Chinese", name="Carrier*A* b", page_id=8, page_pos=1 ) ,
+            AslCard( card_tag="Vehicle*#*14", nationality="Chinese", name="Carrier*B* b", page_id=9, page_pos=0 ) ,
+            AslCard( card_tag="Vehicle*#*14", nationality="Chinese", name="Carrier*C* b", page_id=9, page_pos=1 ) ,
+            AslCard( card_tag="Vehicle1#115", nationality="Chinese", name="Henschel1331 g", page_id=10, page_pos=0 ) ,
+            AslCard( card_tag="Vehicle1#116", nationality="Chinese", name="Jeep1 2 1 a", page_id=10, page_pos=1 ) ,
+            AslCard( card_tag="Vehicle1#116", nationality="Chinese", name="Jeep1 4 1 a", page_id=11, page_pos=0 ) ,
+            AslCard( card_tag="Vehicle1#116", nationality="Chinese", name="211/29Ton1Truck1 a", page_id=11, page_pos=1 ) ,
+        ] )
+
     def test_chinese_ordnance( self ) :
         self._test_pdf_parser( "ChineseOrdnanceMidApril15.pdf" , [
             AslCard(page_id=1, page_pos=0, card_tag="Ordnance3#31", nationality="Chinese", name="Type3273GL") ,
