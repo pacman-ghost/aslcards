@@ -14,15 +14,17 @@ from pdfminer.pdfpage import PDFPage
 import ghostscript
 from PIL import Image , ImageChops
 
-from db import AslCard , AslCardImage
+from asl_cards.db import AslCard , AslCardImage
 
 # ---------------------------------------------------------------------
 
 class PdfParser:
 
-    def __init__( self , progress=None ) :
+    def __init__( self , progress=None  , progress2=None ) :
         # initialize
-        self.progress = progress
+        self.progress = progress # nb: for tracking file progress
+        self.progress2 = progress2 # nb: for tracking page progress within a file
+        self.cancelling = False
 
     def parse( self , target , max_pages=-1 , images=True ) :
         """Extract the cards from a PDF file."""
@@ -38,6 +40,7 @@ class PdfParser:
         # parse each file
         cards = []
         for fname in fnames :
+            if self.cancelling : raise RuntimeError("Cancelled.")
             cards.extend( self._do_parse_file( fname , max_pages , images ) )
         return cards
 
@@ -49,10 +52,11 @@ class PdfParser:
         interp = PDFPageInterpreter( rmgr , dev )
         cards = []
         with open(fname,"rb") as fp :
-            self._progress( 0 , "Loading file: {}".format( fname ) )
+            self._progress( 0 , "Analyzing {}...".format( os.path.split(fname)[1] ) )
             pages = list( PDFPage.get_pages( fp ) )
             for page_no,page in enumerate(pages) :
-                self._progress( float(page_no)/len(pages) , "Extracting card info from page {}...".format( 1+page_no ) )
+                if self.cancelling : raise RuntimeError("Cancelled.")
+                self._progress2( float(page_no) / len(pages) )
                 page_cards = self._parse_page( cards , interp , page_no , page )
                 cards.extend( page_cards )
                 if max_pages > 0 and 1+page_no >= max_pages :
@@ -64,6 +68,7 @@ class PdfParser:
             if len(cards) != len(card_images) :
                 raise RuntimeError( "Found {} cards, {} card images.".format( len(cards) , len(card_images) ) )
             for i in range(0,len(cards)) :
+                if self.cancelling : raise RuntimeError("Cancelled.")
                 cards[i].card_image = AslCardImage( image_data=card_images[i] )
         return cards
 
@@ -75,12 +80,14 @@ class PdfParser:
         # locate the info box for each card (in the top-left corner)
         info_boxes = []
         for item in lt_page :
+            if self.cancelling : raise RuntimeError("Cancelled.")
             if type(item) is not LTTextBoxHorizontal : continue
             item_text = item.get_text().strip()
             if item_text.startswith( ("Vehicle","Ordnance") ) :
                 info_boxes.append( [item] )
         # get the details from each info box
         for item in lt_page :
+            if self.cancelling : raise RuntimeError("Cancelled.")
             if type(item) is not LTTextBoxHorizontal : continue
             # check if the next item could be part of an info box - it must be within the left/right boundary
             # of the first item (within a certain tolerance), and below it (but not too far)
@@ -93,7 +100,6 @@ class PdfParser:
         # generate an AslCard from each info box
         for info_box in info_boxes :
             card = self._make_asl_card( lt_page , info_box )
-            self._progress( None , "Found card: {}".format( card ) )
             cards.append( card )
         return cards
 
@@ -132,7 +138,7 @@ class PdfParser:
         # FIXME! clean up left-over temp files before we start
         args = [ s.encode(locale.getpreferredencoding()) for s in args ]
         # FIXME! stop GhostScript from issuing warnings (stdout).
-        self._progress( 0 , "Extracting images..." )
+        self._progress( 0 , "Extracting images from {}...".format( os.path.split(fname)[1] ) )
         ghostscript.Ghostscript( *args )
         # figure out how many files were created (so we can show progress)
         npages = 0
@@ -144,8 +150,9 @@ class PdfParser:
         # extract the cards from each page
         card_images = []
         for page_no in range(0,npages) :
+            if self.cancelling : raise RuntimeError("Cancelled.")
             # open the next page image
-            self._progress( float(page_no)/npages , "Extracting card images from page {}...".format( 1+page_no ) )
+            self._progress2( float(page_no) / npages )
             fname = fname_template % (1+page_no)
             img = Image.open( fname )
             img_width , img_height = img.size
@@ -196,10 +203,14 @@ class PdfParser:
         os.unlink( fname )
         return buf , rgn.size
 
-    def _progress( self , progress , msg ) :
+    def _progress( self , pval , msg ) :
         """Call the progress callback."""
         if self.progress :
-            self.progress( progress , msg )
+            self.progress( pval , msg )
+    def _progress2( self , pval ) :
+        """Call the progress callback."""
+        if self.progress2 :
+            self.progress2( pval )
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

@@ -5,8 +5,9 @@ import os
 import unittest
 
 base_dir = os.path.split( __file__ )[ 0 ]
-sys.path.append( os.path.join( base_dir , ".." ) )
-from parse import PdfParser , AslCard
+
+sys.path.append( ".." ) # fudge! need this to allow a script to run within a package :-/
+from asl_cards.parse import PdfParser , AslCard
 
 # ---------------------------------------------------------------------
 

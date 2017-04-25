@@ -5,8 +5,9 @@ import sys
 import os
 import getopt
 
-from parse import PdfParser
-import db
+sys.path.append( ".." ) # fudge! need this to allow a script to run within a package :-/
+from asl_cards.parse import PdfParser
+from asl_cards import db
 
 # ---------------------------------------------------------------------
 
@@ -45,9 +46,6 @@ def main( args ) :
             raise RuntimeError( "Unknown argument: {}".format( opt ) )
     if not db_fname : raise RuntimeError( "No database was specified." )
 
-    # initialize
-    db.open_database( db_fname )
-
     # do the requested processing
     pdf_parser = PdfParser( progress_callback if log_progress else None )
     if parse_targets :
@@ -56,8 +54,10 @@ def main( args ) :
             cards.extend (
                 pdf_parser.parse( pt , max_pages=max_pages , images=extract_images )
             )
+        db.open_database( db_fname , True )
         db.add_cards( cards )
     elif dump :
+        db.open_database( db_fname , False )
         db.dump_database()
     else :
         raise RuntimeError( "No action." )

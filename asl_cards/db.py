@@ -60,11 +60,17 @@ class AslCardImage( DbBase , DbBaseMixin ) :
 
 # ---------------------------------------------------------------------
 
-def open_database( fname ) :
+def open_database( fname , create ) :
     """Open the database."""
 
     # open the database
     is_new = not os.path.isfile( fname )
+    if create :
+        if not is_new :
+            raise Exception( "File exists: {}".format( fname ) )
+    else :
+        if is_new :
+            raise Exception( "Can't find file: {}".format( fname ) )
     conn_string = "sqlite:///{}".format( fname )
     global db_engine
     db_engine = create_engine( conn_string , convert_unicode=True )
@@ -76,7 +82,7 @@ def open_database( fname ) :
     db_session.execute( "PRAGMA foreign_keys = on" ) # nb: foreign keys are disabled by default in SQLite
 
     # check if we are creating a new database
-    if is_new :
+    if create :
         # yup - make it so
         DbBase.metadata.create_all( db_engine )
 

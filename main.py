@@ -9,7 +9,6 @@ from PyQt5.QtWidgets import QApplication
 
 from constants import *
 import globals
-import asl_cards.db as db
 
 # ---------------------------------------------------------------------
 
@@ -41,41 +40,36 @@ def do_main( args ) :
             raise RuntimeError( "Unknown argument: {}".format( opt ) )
     if not settings_fname :
         # try to locate the settings file
-        settings_fname = os.path.join( globals.base_dir , globals.app_name+".ini" )
+        fname = globals.app_name+".ini" if sys.platform == "win32" else "."+globals.app_name
+        settings_fname = os.path.join( globals.base_dir , fname )
         if not os.path.isfile( settings_fname ) :
-            settings_fname = os.path.split(settings_fname)[ 1 ]
-            if sys.platform != "win32" :
-                settings_fname = "." + settings_fname
-            settings_fname = os.path.join( QDir.homePath() , settings_fname  )
+            settings_fname = os.path.join( QDir.homePath() , fname  )
     if not db_fname :
-        # try to locate the database
+        # use the default location
         db_fname = os.path.join( globals.base_dir , globals.app_name+".db" )
-    if not os.path.isfile( db_fname ) :
-        raise RuntimeError( "Can't find database: {}".format( db_fname ) )
 
     # load our settings
     globals.app_settings = QSettings( settings_fname , QSettings.IniFormat )
     fname = os.path.join( os.path.split(settings_fname)[0] , "debug.ini" )
     globals.debug_settings = QSettings( fname , QSettings.IniFormat )
 
-    # open the database
-    db.open_database( db_fname )
-    globals.cards = db.load_cards()
-
     # do main processing
     app = QApplication( sys.argv )
-    import main_window
-    main_window = main_window.MainWindow()
+    from main_window import MainWindow
+    main_window = MainWindow( db_fname )
     main_window.show()
+    if os.path.isfile( db_fname ) :
+        main_window.start_main_app( db_fname )
     return app.exec_()
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 def print_help() :
-    print( "{} {{options}}".format( os.path.split(sys.argv[0])[1] ) ) # FIXME! frozen?
+    print( "{} {{options}}".format( globals.app_name ) )
     print( "  {}".format( APP_DESCRIPTION ) )
     print()
     print( "  -c   --config    Config file." )
+    print( "  -d   --db        Database file." )
     sys.exit()
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
