@@ -4,36 +4,17 @@ import sys
 import os
 import unittest
 
-base_dir = os.path.split( __file__ )[ 0 ]
-
-sys.path.append( ".." ) # fudge! need this to allow a script to run within a package :-/
-from asl_cards.parse import PdfParser , AslCard
+from _test_case_base import TestCaseBase
+from asl_cards.parse import AslCard
 
 # ---------------------------------------------------------------------
 
-class TestRealData( unittest.TestCase ) :
+class TestRealData( TestCaseBase ) :
     """Run tests using the real "ASL Cards" PDF files."""
 
     def _test_pdf_parser( self , fname , expected_cards ) :
-        # parse the specified PDF
-        fname2 = os.path.join( base_dir , os.path.join("real-data",fname) )
-        if not os.path.isfile( fname2 ) :
-            raise RuntimeError( "Missing data file: {}".format( fname2 ) )
-        pdf_parser = PdfParser(
-            #progress = lambda _,msg: print( msg , file=sys.stderr , flush=True )
-        )
-        cards = pdf_parser.parse( fname2 , images=False )
-        # check the results
-        if len(cards) != len(expected_cards) :
-            raise RuntimeError( "{}: got {} cards, expected {}.".format( fname , len(cards) , len(expected_cards) ) )
-        # get the attributes we're interested in
-        card = expected_cards[0]
-        attrs = [ a for a in dir(card) if not a.startswith("_") and not callable(getattr(card,a)) ]
-        attrs.remove( "card_image" ) # this is messing things up :-/
-        # compare the extracted cards with the expected results
-        for i in range(0,len(cards)) :
-            if not all( getattr(cards[i],a) == getattr(expected_cards[i],a) for a in attrs ) :
-                raise RuntimeError( "{}: Card mismatch ({}): got {}, expected {}.".format( fname , i , cards[i] , expected_cards[i] ) )
+        """Test the PDF parser."""
+        super()._test_pdf_parser( os.path.join("real-data",fname) , expected_cards )
 
     def test_italian_ordnance( self ) :
         self._test_pdf_parser( "ItalianOrdnance.pdf" , [
