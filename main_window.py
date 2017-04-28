@@ -90,15 +90,15 @@ class MainWindow( QMainWindow ) :
     @staticmethod
     def show_info_msg( msg ) :
         """Show an informational message."""
-        QMessageBox.information( MainWindow._instance , APP_NAME , msg )
+        QMessageBox.information( None , APP_NAME , msg )
     @staticmethod
     def show_error_msg( msg ) :
         """Show an error message."""
-        QMessageBox.warning( MainWindow._instance , APP_NAME , msg )
+        QMessageBox.warning( None , APP_NAME , msg )
     @staticmethod
     def ask( msg , buttons , default ) :
         """Ask the user a question."""
-        return QMessageBox.question( MainWindow._instance , APP_NAME , msg , buttons , default )
+        return QMessageBox.question( None , APP_NAME , msg , buttons , default )
 
     def closeEvent( self , evt ) :
         """Handle window close."""
@@ -113,8 +113,7 @@ class MainWindow( QMainWindow ) :
         else :
             # check if we should confirm the exit
             if globals.app_settings.value( CONFIRM_EXIT , True , type=bool ) :
-                rc = QMessageBox.question( self , "Confirm close" ,
-                    "Do you want to the close the program?" ,
+                rc = self.ask( "Do you want to the close the program?" ,
                     QMessageBox.Ok | QMessageBox.Cancel ,
                     QMessageBox.Cancel
                 )
