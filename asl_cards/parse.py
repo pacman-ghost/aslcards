@@ -20,14 +20,21 @@ from asl_cards.db import AslCard , AslCardImage
 
 # ---------------------------------------------------------------------
 
+class AnalyzeCancelledException( RuntimeError ) :
+    def __init__( self ) :
+        super().__init__( "Cancelled." )
+
+# ---------------------------------------------------------------------
+
 class PdfParser:
 
-    def __init__( self , index_dir , ask=None , progress=None  , progress2=None ) :
+    def __init__( self , index_dir , progress=None , progress2=None , on_ask=None , on_error=None ) :
         # initialize
         self.index_dir = index_dir
-        self.ask = ask # nb: for asking the user something during processing
         self.progress = progress # nb: for tracking file progress
         self.progress2 = progress2 # nb: for tracking page progress within a file
+        self.on_ask = on_ask # nb: for asking the user something during processing
+        self.on_error = on_error # nb: for showing the user an error message
         self.cancelling = False
 
     def parse( self , target , max_pages=-1 , images=True ) :
@@ -44,8 +51,21 @@ class PdfParser:
         # parse each file
         cards = []
         for file_no,fname in enumerate(fnames) :
-            if self.cancelling : raise RuntimeError("Cancelled.")
-            file_cards = self._do_parse_file( float(file_no)/len(fnames) , fname , max_pages , images )
+            if self.cancelling : raise AnalyzeCancelledException()
+            try :
+                file_cards = self._do_parse_file( float(file_no)/len(fnames) , fname , max_pages , images )
+            except AnalyzeCancelledException as ex :
+                raise
+            except Exception as ex :
+                # notify the caller of the error
+                if not self.on_error :
+                    raise
+                self.on_error(
+                    "An error occured while processing {}:\n\n{}\n\nThis file will be ignored.".format(
+                        os.path.split(fname)[1] , str(ex)
+                    )
+                )
+                continue
             if file_cards :
                 cards.extend( file_cards )
         self._progress( 1.0 , "Done." )
@@ -87,8 +107,8 @@ class PdfParser:
                 ) )
         else :
             # ask the user if they want to try parsing the PDF
-            if self.ask :
-                rc = self.ask(
+            if self.on_ask :
+                rc = self.on_ask(
                     "Can't find an index file for {}.\n\nDo you want to try parsing the PDF (slow and unreliable)?".format(
                         os.path.split( fname )[ 1 ]
                     ) ,
@@ -97,6 +117,11 @@ class PdfParser:
                 if rc != QMessageBox.Yes :
                     return None
             # extract each AslCard from the file
+            # NOTE: Some of the PDF's have cards that have not been filled out - we detect this correctly (because
+            # they don't have a "Vehicle" or "Ordnance" tag, but we barf later because the image extractor thinks
+            # they're a valid card, and so we get a different number of cards vs. images.
+            # It's not really worth fixing this, since we're now using index files instead of extracting the info
+            # from the PDF's (because extraction is giving such poor results :-/).
             self._progress( pval , "Analyzing {}...".format( os.path.split(fname)[1] ) )
             rmgr = PDFResourceManager()
             laparams = LAParams()
@@ -105,7 +130,7 @@ class PdfParser:
             with open(fname,"rb") as fp :
                 pages = list( PDFPage.get_pages( fp ) )
                 for page_no,page in enumerate(pages) :
-                    if self.cancelling : raise RuntimeError("Cancelled.")
+                    if self.cancelling : raise AnalyzeCancelledException()
                     self._progress2( float(page_no) / len(pages) )
                     page_cards = self._parse_page( cards , interp , page_no , page )
                     cards.extend( page_cards )
@@ -122,7 +147,7 @@ class PdfParser:
                     )
                 )
             for i in range(0,len(cards)) :
-                if self.cancelling : raise RuntimeError("Cancelled.")
+                if self.cancelling : raise AnalyzeCancelledException()
                 cards[i].card_image = AslCardImage( image_data=card_images[i] )
         return cards
 
@@ -134,14 +159,14 @@ class PdfParser:
         # locate the info box for each card (in the top-left corner)
         info_boxes = []
         for item in lt_page :
-            if self.cancelling : raise RuntimeError("Cancelled.")
+            if self.cancelling : raise AnalyzeCancelledException()
             if type(item) is not LTTextBoxHorizontal : continue
             item_text = item.get_text().strip()
             if item_text.startswith( ("Vehicle","Ordnance") ) :
                 info_boxes.append( [item] )
         # get the details from each info box
         for item in lt_page :
-            if self.cancelling : raise RuntimeError("Cancelled.")
+            if self.cancelling : raise AnalyzeCancelledException()
             if type(item) is not LTTextBoxHorizontal : continue
             # check if the next item could be part of an info box - it must be within the left/right boundary
             # of the first item (within a certain tolerance), and below it (but not too far)
@@ -203,7 +228,7 @@ class PdfParser:
         # extract the cards from each page
         card_images = []
         for page_no in range(0,npages) :
-            if self.cancelling : raise RuntimeError("Cancelled.")
+            if self.cancelling : raise AnalyzeCancelledException()
             # open the next page image
             self._progress2( float(page_no) / npages )
             fname = fname_template % (1+page_no)

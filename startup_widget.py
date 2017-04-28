@@ -35,9 +35,10 @@ class AnalyzeThread( QThread ) :
             # parse the files
             self.parser = PdfParser(
                 os.path.join( globals.base_dir , "index" ) ,
-                ask = self.ask ,
                 progress = lambda pval,msg: self.progress_signal.emit( -1 if pval is None else pval , msg ) ,
-                progress2 = lambda pval: self.progress2_signal.emit( pval )
+                progress2 = lambda pval: self.progress2_signal.emit( pval ) ,
+                on_ask = self.on_ask ,
+                on_error = self.on_error ,
             )
             cards = self.parser.parse( self.cards_dir )
             db.open_database( self.db_fname , True )
@@ -52,7 +53,16 @@ class AnalyzeThread( QThread ) :
             # notify slots that we've finished
             self.completed_signal.emit( "" )
 
-    def ask( self , msg , btns , default ) :
+    def on_error( self , msg ) :
+        """Show the user an error message."""
+        # NOTE: We are running in a worker thread, so we need to delegate showing the message box
+        # to the GUI thread.
+        QMetaObject.invokeMethod(
+            StartupWidget._instance , "on_error" , Qt.BlockingQueuedConnection ,
+            Q_ARG( str , msg )
+        )
+
+    def on_ask( self , msg , btns , default ) :
         """Ask the user a question."""
         # NOTE: We are running in a worker thread, so we need to delegate showing the message box
         # to the GUI thread.
@@ -77,6 +87,7 @@ class StartupWidget( QWidget ) :
     def __init__( self , db_fname , parent=None ) :
         # initialize
         super(StartupWidget,self).__init__( parent=parent )
+        assert StartupWidget._instance is None
         StartupWidget._instance = self
         self.analyze_thread = None
         # FUDGE! Workaround recursive import's :-/
@@ -189,6 +200,11 @@ class StartupWidget( QWidget ) :
     def on_analyze_progress2( self , pval ) :
         """Update the analysis progress in the UI."""
         self.pb_pages.setValue( int( 100*pval + 0.5 ) )
+
+    @pyqtSlot( str )
+    def on_error( self , msg ) :
+        """Show an error message box."""
+        MainWindow.show_error_msg( msg )
 
     @pyqtSlot( str , QMessageBox.StandardButtons , QMessageBox.StandardButton , result=QMessageBox.StandardButton )
     def on_ask( self , msg , buttons , default ) :
