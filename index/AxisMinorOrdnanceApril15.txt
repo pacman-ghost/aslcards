@@ -1,0 +1,84 @@
+Ordnance #1  | Romanian   | Brandt M35 (f)
+Ordnance #2  | Romanian   | Bofors 37mm
+Ordnance #3  | Romanian   | 45mm PTP o.32 (r)
+Ordnance #4  | Romanian   | Resita M43
+Ordnance #5  | Romanian   | 76.2mm PaK 36 (r)
+Ordnance #6  | Romanian   | Breda 47 (i)
+Ordnance #7  | Romanian   | 75mm PP obr.27 (r)
+Ordnance #8  | Romanian   | 75 M mle 28 (f)
+Ordnance #9  | Romanian   | Skoda M 14/34
+Ordnance #10 | Romanian   | 76.2mm o.00/02 (r)
+Ordnance #11 | Romanian   | 76.2mm o.02/30 (r)
+Ordnance #12 | Romanian   | 76.2mm o.39 (r)
+Ordnance #13 | Romanian   | s 10cm K 18 (g)
+Ordnance #14 | Romanian   | Skoda M39(D9)
+Ordnance #15 | Romanian   | Canon 105L m36S (f)
+Ordnance #16 | Romanian   | Canon mle 10/12 (f)
+Ordnance #17 | Romanian   | OQF 4.5in (b)
+Ordnance #18 | Romanian   | Skoda M28 NOa
+Ordnance #19 | Romanian   | Skoda M33 (K1)
+Ordnance #20 | Romanian   | CA mle 38 (f)
+Ordnance #21 | Romanian   | Vick/Resita M36/39
+Ordnance #22 | Romanian   | Kanon PL vz. 12/20
+Ordnance #23 | Hungarian  | 5cm IeGrW 39 (h)
+Ordnance #24 | Hungarian  | 40mm MAVAG 40M
+Ordnance #25 | Hungarian  | Skoda M05/08
+Ordnance #26 | Hungarian  | 105 MAVAG M40
+Ordnance #27 | Hungarian  | Bofors 80 M29/38
+Ordnance #28 | Slovakian  | Minomet vz.36
+Ordnance #29 | Slovakian  | Kanon PUV v.36 (t)
+Ordnance #30 | Slovakian  | IeIG 18 (g)
+Ordnance #31 | Slovakian  | Skoda M37(K4)
+Ordnance #32 | Slovakian  | Skoda 47L40 (t)
+Ordnance #33 | Slovakian  | Skoda PL vz.37 (t)
+Ordnance #34 | Slovakian  | Kanon PL vz.22/24
+Ordnance #35 | Croatian   | Can da 65/17 (i)
+Ordnance #36 | Croatian   | Skoda M28(FE)
+Ordnance #37 | Bulgarian  | LG de 50 m 37 (f)
+Ordnance #38 | Bulgarian  | Madsen M-35
+Ordnance #39 | Bulgarian  | Skoda Inf 37
+Ordnance #39 | Bulgarian  | Skoda Inf 70
+Ordnance #40 | Bulgarian  | Bofors 75 M36
+Ordnance #41 | Bulgarian  | 75mm K-S
+Ordnance #42 | Bulgarian  | Ob 105mm GP
+Ordnance #42 | Bulgarian  | Ob 105mm GP (LF)
+Ordnance #43 | Bulgarian  | D/30 Krupp
+Ordnance #44 | Axis Minor | 5cm IeGrW 36 (g)
+Ordnance #45 | Axis Minor | 50mm RM o.40 (r)
+Ordnance #46 | Axis Minor | 8cm GrW 34 (g)
+Ordnance #47 | Axis Minor | Brandt M27/31 (f)
+Ordnance #48 | Axis Minor | PM obr.38 (r)
+Ordnance #49 | Axis Minor | Ur wz.35 (p)
+Ordnance #50 | Axis Minor | s18-1100
+Ordnance #51 | Axis Minor | Kanon PUV v.37 (t)
+Ordnance #52 | Axis Minor | Bohler M35 47mm
+Ordnance #53 | Axis Minor | 5cm PaK 38 (g)
+Ordnance #54 | Axis Minor | 7.5cm PaK 97/38 (g)
+Ordnance #55 | Axis Minor | 7.5cm PaK 40 (g)
+Ordnance #56 | Axis Minor | Skoda M15
+Ordnance #57 | Axis Minor | Canon 75 m 1897 (f)
+Ordnance #58 | Axis Minor | Skoda M29
+Ordnance #59 | Axis Minor | Skoda M17
+Ordnance #60 | Axis Minor | Skoda M28(80)
+Ordnance #61 | Axis Minor | Skoda M14/19
+Ordnance #62 | Axis Minor | IeFH 18 (g)
+Ordnance #63 | Axis Minor | Skoda M35
+Ordnance #64 | Axis Minor | G obr.10/30 (r)
+Ordnance #65 | Axis Minor | G obr.38 (r)
+Ordnance #66 | Axis Minor | Skoda M14
+Ordnance #67 | Axis Minor | Skoda M15/16
+Ordnance #68 | Axis Minor | C mle 17 S (f)
+Ordnance #69 | Axis Minor | Mitr. 13.2 CAJ m 30
+Ordnance #70 | Axis Minor | Oerlikon FF
+Ordnance #70 | Axis Minor | Oerlikon FF (LF)
+Ordnance #71 | Axis Minor | 2cm FlaK 30 (g)
+Ordnance #71 | Axis Minor | 2cm FlaK 30 (g) (LF)
+Ordnance #72 | Axis Minor | 2cm FlaK 38 (g)
+Ordnance #72 | Axis Minor | 2cm FlaK 38 (g) (LF)
+Ordnance #73 | Axis Minor | 3.7cm FlaK 36 (g)
+Ordnance #74 | Axis Minor | Bofors 40mm
+Ordnance #74 | Axis Minor | Bofors 40mm (LF)
+Ordnance #75 | Axis Minor | Skoda M33
+Ordnance #76 | Axis Minor | 8.8cm FlaK 18 (g)
+Ordnance #76 | Axis Minor | 8.8cm FlaK 18 (g) (LF)
+Ordnance #00 | _unused_   | _unused_

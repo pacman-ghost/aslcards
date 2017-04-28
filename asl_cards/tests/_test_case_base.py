@@ -18,6 +18,7 @@ class TestCaseBase( unittest.TestCase ) :
         if not os.path.isfile( fname2 ) :
             raise RuntimeError( "Missing data file: {}".format( fname2 ) )
         pdf_parser = PdfParser(
+            None ,
             #progress = lambda _,msg: print( msg , file=sys.stderr , flush=True )
         )
         cards = pdf_parser.parse( fname2 , images=False )

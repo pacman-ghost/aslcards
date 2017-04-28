@@ -1,0 +1,30 @@
+Ordnance #1  | British | OML 2in
+Ordnance #1  | British | OML 2in Airb.
+Ordnance #2  | British | OML 3in (E)
+Ordnance #2  | British | OML 3in (L)
+Ordnance #3  | British | OSB 4.2in
+Ordnance #4  | British | OQF 25mm Hotch.
+Ordnance #5  | British | OQF 2pdr
+Ordnance #5  | British | OQF 2pdr (LF)
+Ordnance #6  | British | OQF 6pdr
+Ordnance #7  | British | OQF 17/25pdr
+Ordnance #8  | British | OQF 17pdr
+Ordnance #9  | British | OQF M1A1 75mm
+Ordnance #10 | British | Canon de 75 1897
+Ordnance #11 | British | OQF 18pdr
+Ordnance #12 | British | OQF 25pdr Short
+Ordnance #13 | British | OQF 25pdr Gun
+Ordnance #13 | British | OQF 25pdr Gun (LF)
+Ordnance #14 | British | OQF 3.7in How.
+Ordnance #15 | British | OQF 4.5in How.
+Ordnance #16 | British | OBL 4.5in Gun
+Ordnance #16 | British | OBL 5.5in Gun
+Ordnance #17 | British | OBL 6in How.
+Ordnance #18 | British | OBL 7.2in How. I
+Ordnance #19 | British | OBL 7.2in How. VI
+Ordnance #20 | British | OQF 20mm
+Ordnance #21 | British | OQF 40mm
+Ordnance #21 | British | OQF 40mm (LF)
+Ordnance #22 | British | OQF 3in 20cwt
+Ordnance #23 | British | OWF 3.7in
+Ordnance #23 | British | OWF 3.7in

@@ -1,0 +1,24 @@
+Vehicle #1  | Japanese | Type 92A
+Vehicle #1  | Japanese | Type 92B
+Vehicle #2  | Japanese | Type 94
+Vehicle #3  | Japanese | Type 95 SO-KI
+Vehicle #4  | Japanese | Type 97A TE-KE
+Vehicle #4  | Japanese | Type 97B TE-KE
+Vehicle #5  | Japanese | Type 95 HA-GO
+Vehicle #6  | Japanese | Type 2 KA-MI
+Vehicle #6  | Japanese | Type 2 KA-MI w/o
+Vehicle #7  | Japanese | Type 89A CHI-RO
+Vehicle #7  | Japanese | Type 89B CHI-RO
+Vehicle #8  | Japanese | Type 97A CHI-HA
+Vehicle #8  | Japanese | Type 97B CHI-HA
+Vehicle #9  | Japanese | Type 1 CHI-HE
+Vehicle #10 | Japanese | Type 91
+Vehicle #11 | Japanese | Type 92
+Vehicle #12 | Japanese | Type 1 HO-NI I
+Vehicle #13 | Japanese | Type 4 HO-RO
+Vehicle #14 | Japanese | Type 1 HO-KI
+Vehicle #15 | Japanese | Type 98 SHI-KE
+Vehicle #16 | Japanese | Type 92 I-KE
+Vehicle #17 | Japanese | Type 95
+Vehicle #18 | Japanese | Type 94 Truck
+Vehicle #19 | Japanese | Type 97 Truck

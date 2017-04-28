@@ -1,0 +1,42 @@
+Vehicle #1  | Italian | L5/21
+Vehicle #1  | Italian | L5/30
+Vehicle #2  | Italian | L3/35
+Vehicle #3  | Italian | L3 aa
+Vehicle #4  | Italian | L3 cc
+Vehicle #5  | Italian | L3 lf
+Vehicle #6  | Italian | L6/40
+Vehicle #7  | Italian | M11/39 (MA)
+Vehicle #7  | Italian | M11/39 (SA)
+Vehicle #8  | Italian | M13/40
+Vehicle #9  | Italian | M14/41
+Vehicle #10 | Italian | M15/42
+Vehicle #11 | Italian | MR/35 (f)
+Vehicle #12 | Italian | SMV M40 da 75/18
+Vehicle #12 | Italian | SMV M41 da 75/18
+Vehicle #13 | Italian | SMV M42 da 75/18
+Vehicle #13 | Italian | SMV M42 da 75/32
+Vehicle #14 | Italian | SMV M43 da 105/25
+Vehicle #15 | Italian | SMV L40 da 47/32
+Vehicle #16 | Italian | SMV M41M da 90/53
+Vehicle #17 | Italian | AS 42
+Vehicle #17 | Italian | AS 42 aa
+Vehicle #17 | Italian | AS 42 cc
+Vehicle #18 | Italian | Lince
+Vehicle #19 | Italian | Lancia 1ZM
+Vehicle #20 | Italian | Fiat 611A
+Vehicle #20 | Italian | Fiat 611B
+Vehicle #21 | Italian | AB 40
+Vehicle #21 | Italian | AB 41
+Vehicle #22 | Italian | Autop. S37
+Vehicle #23 | Italian | Autoc. da 65/17 (b)
+Vehicle #23 | Italian | Autoc. da 20/65 (b)
+Vehicle #24 | Italian | Autoc. da 75/27 CK
+Vehicle #24 | Italian | Autoc. da 90/53
+Vehicle #25 | Italian | TL 37
+Vehicle #25 | Italian | TM 40
+Vehicle #25 | Italian | TP 32
+Vehicle #26 | Italian | Autocarretta
+Vehicle #27 | Italian | Fiat 508 MC
+Vehicle #28 | Italian | Autoc. Leggero
+Vehicle #28 | Italian | Autoc. Medio
+Vehicle #28 | Italian | Autoc. Pesante

@@ -1,0 +1,28 @@
+Ordnance #1  | Japanese | Type 89 HGL
+Ordnance #2  | Japanese | Year-11 Type CFIG
+Ordnance #3  | Japanese | Type 97 CFIG
+Ordnance #4  | Japanese | Type 97 LCAG
+Ordnance #5  | Japanese | Type 97 MCAG
+Ordnance #6  | Japanese | Type 97 Auto Gun
+Ordnance #7  | Japanese | Type 94 RF Gun
+Ordnance #8  | Japanese | Type 1 MM Gun
+Ordnance #9  | Japanese | Year-11 Type FTIG
+Ordnance #10 | Japanese | Type 92 Inf Gun
+Ordnance #11 | Japanese | Year-41 Type M Gun
+Ordnance #12 | Japanese | Year-38 Type F Gun
+Ordnance #13 | Japanese | Type 90 Field Gun
+Ordnance #14 | Japanese | Type 91 10cm How
+Ordnance #15 | Japanese | Type 92 10cm Can
+Ordnance #16 | Japanese | Year-38 Type 12cm
+Ordnance #17 | Japanese | Year-3 Type 14cm
+Ordnance #18 | Japanese | Year-4 Type 15cm
+Ordnance #19 | Japanese | Type 96 15cm How
+Ordnance #20 | Japanese | Type 93 TM HA
+Ordnance #21 | Japanese | Type 98 HAMC
+Ordnance #21 | Japanese | Type 98 HAMC (LF)
+Ordnance #22 | Japanese | Type 96 Single
+Ordnance #22 | Japanese | Type 96 Twin
+Ordnance #22 | Japanese | Type 96 Triple
+Ordnance #23 | Japanese | Type 88 7.5cm
+Ordnance #24 | Japanese | Year-10 Type 12cm
+Ordnance #24 | Japanese | Year-10 Type 12cm

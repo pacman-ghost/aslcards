@@ -97,7 +97,7 @@ class MainWindow( QMainWindow ) :
         QMessageBox.warning( MainWindow._instance , APP_NAME , msg )
     @staticmethod
     def ask( msg , buttons , default ) :
-        """Show an error message."""
+        """Ask the user a question."""
         return QMessageBox.question( MainWindow._instance , APP_NAME , msg , buttons , default )
 
     def closeEvent( self , evt ) :

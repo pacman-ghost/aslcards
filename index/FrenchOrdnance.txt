@@ -1,0 +1,22 @@
+Ordnance #1  | French | LG de 50 mle 37 (f)
+Ordnance #2  | French | Mtr de 60 mle 35
+Ordnance #3  | French | Mtr de 81 mle 27/31
+Ordnance #5  | French | Canon AC de 25
+Ordnance #6  | French | Canon AC de 47
+Ordnance #7  | French | Canon de 75 AC
+Ordnance #8  | French | Canon de 37
+Ordnance #9  | French | Canon de 65 M
+Ordnance #10 | French | Canon de 75 M
+Ordnance #11 | French | Canon de 75
+Ordnance #12 | French | Canon de 105 M
+Ordnance #13 | French | Canon de 105 C
+Ordnance #14 | French | Canon de 105 L 13 S
+Ordnance #15 | French | Canon de 105 L 36 S
+Ordnance #16 | French | Canon de 155 C
+Ordnance #17 | French | Canon de 155 GPF
+Ordnance #18 | French | Mitr. de 13.2 CAJ
+Ordnance #19 | French | Mitr. de 20 CA
+Ordnance #19 | French | Mitr. de 20 CA (LF)
+Ordnance #20 | French | Canon Auto. de 25
+Ordnance #21 | French | Canon de 75 CA
+Ordnance #21 | French | Canon de 75 CA

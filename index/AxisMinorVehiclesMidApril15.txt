@@ -1,0 +1,66 @@
+Vehicle #1  | Romanian   | R-1 (t)
+Vehicle #2  | Romanian   | R-35/45 (f)
+Vehicle #3  | Romanian   | TACAM T-60 (r)
+Vehicle #3  | Romanian   | TACAM T-60A (r)
+Vehicle #4  | Romanian   | TACAM R-2 (r)
+Vehicle #5  | Romanian   | BA-6 (r)
+Vehicle #5  | Romanian   | BA-20 (r)
+Vehicle #6  | Romanian   | Malaxa UE2
+Vehicle #7  | Hungarian  | 38M Toldi I
+Vehicle #8  | Hungarian  | 38M Toldi IIA
+Vehicle #9  | Hungarian  | 40M Turan I (r)
+Vehicle #10 | Hungarian  | 41M Turan II (r)
+Vehicle #11 | Hungarian  | PzKpfw VG (g)
+Vehicle #12 | Hungarian  | PzKpfw VIE(L) (g)
+Vehicle #13 | Hungarian  | 43M Zrinyi II
+Vehicle #14 | Hungarian  | 39M Csaba
+Vehicle #14 | Hungarian  | 40M Csaba
+Vehicle #15 | Hungarian  | Marder II (g)
+Vehicle #16 | Hungarian  | 40M Nimrod
+Vehicle #17 | Slovakian  | T vz 33 (t)
+Vehicle #18 | Slovakian  | LT vz 34
+Vehicle #19 | Slovakian  | PzKpfz IIA (g)
+Vehicle #20 | Slovakian  | LT vz 40 (t)
+Vehicle #21 | Slovakian  | Marder III (t) H
+Vehicle #22 | Slovakian  | Kfz I (g)
+Vehicle #23 | Slovakian  | SdKfz 2 (g)
+Vehicle #24 | Slovakian  | TKS
+Vehicle #24 | Croatian   | TKS(L)
+Vehicle #25 | Croatian   | L6/40 (i)
+Vehicle #26 | Croatian   | wz 34-I
+Vehicle #26 | Croatian   | wz 34-II 
+Vehicle #27 | Croatian   | SMV L40 da 47/32
+Vehicle #28 | Bulgarian  | Vickers Mk E (b)
+Vehicle #29 | Axis Minor | L3/35 (i)
+Vehicle #30 | Axis Minor | FT-17M (f)
+Vehicle #30 | Axis Minor | FT-17C (f)
+Vehicle #31 | Axis Minor | PzKpfw IB (g)
+Vehicle #32 | Axis Minor | R-35 (f)
+Vehicle #33 | Axis Minor | H39 (f)
+Vehicle #34 | Axis Minor | LT vz 35 (g)
+Vehicle #35 | Axis Minor | LT vz 38 (t) A
+Vehicle #35 | Axis Minor | LT vz 38 (t) E
+Vehicle #36 | Axis Minor | S-35 (f)
+Vehicle #37 | Axis Minor | PzKpfw IIIL (g)
+Vehicle #38 | Axis Minor | PzKpfw IIIN (g)
+Vehicle #39 | Axis Minor | PzKpfw IVD (g)
+Vehicle #39 | Axis Minor | PzKpfw IVF1 (g)
+Vehicle #39 | Axis Minor | PzKpfw IVH (g)
+Vehicle #40 | Axis Minor | StuG IIIG (g)
+Vehicle #41 | Axis Minor | JgdPz 38 (t)
+Vehicle #42 | Axis Minor | SPW 250/1 (g)
+Vehicle #42 | Axis Minor | SPW 251/1 (g)
+Vehicle #42 | Axis Minor | SPW 251/9 (g)
+Vehicle #43 | Axis Minor | OA vz 30 (t)
+Vehicle #44 | Axis Minor | AB 41 (i)
+Vehicle #45 | Axis Minor | PSW 222 (g)
+Vehicle #45 | Axis Minor | PSW 222(L) (g)
+Vehicle #46 | Axis Minor | PSW 223 (g)
+Vehicle #47 | Axis Minor | Komsomolet (r)
+Vehicle #48 | Axis Minor | RSO (g)
+Vehicle #49 | Axis Minor | Light Tractor
+Vehicle #49 | Axis Minor | Medium Tractor
+Vehicle #49 | Axis Minor | Heavy Tractor
+Vehicle #50 | Axis Minor | Light Truck
+Vehicle #50 | Axis Minor | Medium Truck
+Vehicle #50 | Axis Minor | Heavy Truck

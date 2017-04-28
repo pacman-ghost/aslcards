@@ -1,0 +1,46 @@
+Ordnance #1  | Finnish  | 47 Krh/41
+Ordnance #2  | Finnish  | 50 Krh/39 (r)
+Ordnance #3  | Finnish  | 81 Krh/32
+Ordnance #4  | Finnish  | 81 Savunh. M/42
+Ordnance #5  | Finnish  | 120 Krh/40
+Ordnance #6  | Finnish  | Boys ATR (b)
+Ordnance #7  | Finnish  | Lahti ATR
+Ordnance #8  | Finnish  | 20 PstK/40
+Ordnance #9  | Finnish  | 25 PstK/37 (f)
+Ordnance #10 | Finnish  | 37 PstK/36 (s)
+Ordnance #11 | Finnish  | 37 PstK/37 (g)
+Ordnance #12 | Finnish  | 45 PstK/32 (r)
+Ordnance #13 | Finnish  | 50 PstK/38 (g)
+Ordnance #14 | Finnish  | 75 PstK/97-38 (g)
+Ordnance #15 | Finnish  | 75 PstK/40 (g)
+Ordnance #16 | Finnish  | 76 RK/27 (r)
+Ordnance #17 | Finnish  | 75 K/02
+Ordnance #18 | Finnish  | 76 LK/13
+Ordnance #19 | Finnish  | 76 K/02 (r)
+Ordnance #20 | Finnish  | 76 K/36 (r)
+Ordnance #21 | Finnish  | 87 K/95
+Ordnance #22 | Finnish  | 90 K/77
+Ordnance #23 | Finnish  | 105 H/33 (g)
+Ordnance #24 | Finnish  | 105 H/37
+Ordnance #25 | Finnish  | 105 H/41 (t)
+Ordnance #26 | Finnish  | 107 K 10/13
+Ordnance #27 | Finnish  | 107 K/77 (r)
+Ordnance #28 | Finnish  | 114 H/18 (b)
+Ordnance #29 | Finnish  | 122 H/10 (r)
+Ordnance #30 | Finnish  | 150 H/40 (g)
+Ordnance #31 | Finnish  | 155 H/17 (f)
+Ordnance #32 | Finnish  | 7.62 ltKK/31-40
+Ordnance #33 | Finnish  | 20 ltK/30 BSW (g)
+Ordnance #33 | Finnish  | 20 ltK/30 BSW (LF)
+Ordnance #34 | Finnish  | 20 ltK/38 BSW (g)
+Ordnance #34 | Finnish  | 20 ltK/38 BSW (LF)
+Ordnance #35 | Finnish  | 20 ltK/35 Br
+Ordnance #35 | Finnish  | 20 ltK/35 Br (LF)
+Ordnance #36 | Finnish  | 20 ltK/40 VKT
+Ordnance #36 | Finnish  | 20 ltK/40 VKT (LF)
+Ordnance #37 | Finnish  | 40 ltK/35-39 B (s)
+Ordnance #37 | Finnish  | 40 ltK/35-39 B (s) (LF)
+Ordnance #38 | Finnish  | 76 ltK/28 B (s)
+Ordnance #38 | Finnish  | 76 ltK/28 B (s) (LF)
+Ordnance #39 | Finnish  | 76 ltK/31 (r)
+Ordnance #00 | _unused_ | _unused_

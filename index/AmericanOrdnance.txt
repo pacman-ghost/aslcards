@@ -1,0 +1,30 @@
+Ordnance #1  | American | M2 60mm
+Ordnance #2  | American | M19
+Ordnance #3  | American | M1 81mm
+Ordnance #4  | American | M2 4.2in
+Ordnance #5  | American | T25
+Ordnance #6  | American | M3A1
+Ordnance #7  | American | M1 57mm
+Ordnance #8  | American | M5
+Ordnance #9  | American | T32
+Ordnance #10 | American | M18
+Ordnance #11 | American | M20
+Ordnance #12 | American | M1A1 75mm
+Ordnance #13 | American | M1897A2
+Ordnance #14 | American | M2A1
+Ordnance #15 | American | M3
+Ordnance #16 | American | M1 4.5in
+Ordnance #17 | American | M1918
+Ordnance #18 | American | M1 155mm
+Ordnance #19 | American | M1918M1
+Ordnance #20 | American | M1A1 155mm
+Ordnance #21 | American | M1 8in
+Ordnance #22 | American | M51
+Ordnance #22 | American | M51 (LF)
+Ordnance #23 | American | M1A2
+Ordnance #24 | American | M1 40mm
+Ordnance #24 | American | M1 40mm (LF)
+Ordnance #25 | American | M3 AA
+Ordnance #26 | American | M1A1 90mm
+Ordnance #27 | American | M2
+Ordnance #27 | American | M2 (LF)

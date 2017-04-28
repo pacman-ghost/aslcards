@@ -1,0 +1,58 @@
+Vehicle #1    | Russian  | T-37
+Vehicle #2    | Russian  | T-40
+Vehicle #3    | Russian  | T-50
+Vehicle #4    | Russian  | T-60 M40
+Vehicle #4    | Russian  | T-60 M42
+Vehicle #5    | Russian  | T-70
+Vehicle #6    | Russian  | T-26 M33
+Vehicle #6    | Russian  | T-26S M37/39
+Vehicle #7    | Russian  | OT-133
+Vehicle #8    | Russian  | BT-5 M34
+Vehicle #9    | Russian  | BT-7 M37
+Vehicle #10   | Russian  | BT-7A
+Vehicle #11   | Russian  | T-28 M34
+Vehicle #12   | Russian  | T-28E M40
+Vehicle #13   | Russian  | T-34 M40
+Vehicle #14   | Russian  | T-34 M41
+Vehicle #15   | Russian  | OT-34
+Vehicle #16   | Russian  | T-34 M43
+Vehicle #17   | Russian  | T-43
+Vehicle #18   | Russian  | T-34/85
+Vehicle #19   | Russian  | M4/76 (a)
+Vehicle #20   | Russian  | T-44
+Vehicle #21   | Russian  | T-35
+Vehicle #22   | Russian  | KV-1 M39/40
+Vehicle #23   | Russian  | KV-1E
+Vehicle #23   | Russian  | KV-1 M41
+Vehicle #23   | Russian  | KV-1 M42
+Vehicle #24   | Russian  | KV-2
+Vehicle #15   | Russian  | KV-8
+Vehicle #25   | Russian  | KV-1S
+Vehicle #26   | Russian  | KV-85
+Vehicle #27   | Russian  | IS-2
+Vehicle #28   | Russian  | IS-2m
+Vehicle #29   | Russian  | IS-3
+Vehicle #30   | Russian  | SU-76M
+Vehicle #31   | Russian  | SU-76i (g)
+Vehicle #32   | Russian  | SU-122
+Vehicle #33   | Russian  | SU-152
+Vehicle #34   | Russian  | ISU-122
+Vehicle #34   | Russian  | ISU-152
+Vehicle #35   | Russian  | SU-85
+Vehicle #36   | Russian  | SU-100
+Vehicle #37   | Russian  | SU-57 (a)
+Vehicle #38   | Russian  | BA-20
+Vehicle #39   | Russian  | BA-6
+Vehicle #40   | Russian  | BA-64B
+Vehicle #41   | Russian  | ZSU-37
+Vehicle #42   | Russian  | SU-12
+Vehicle #43   | Russian  | GAZ-4M-AA
+Vehicle #44   | Russian  | ZIS-42-AA
+Vehicle #45   | Russian  | IAG-10-AA
+Vehicle #46   | Russian  | GAZ-67B
+Vehicle #47   | Russian  | GAZ-MM
+Vehicle #47   | Russian  | ZIS-5
+Vehicle #47   | Russian  | IAG-6
+Vehicle #7.1  | Russian  | BT-2A
+Vehicle #46.1 | Russian  | Komsomolet
+Vehicle #00   | _unused_ | _unused_

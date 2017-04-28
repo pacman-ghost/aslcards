@@ -1,0 +1,21 @@
+Ordnance #1  | Italian | Mortaio da 45
+Ordnance #2  | Italian | Mortaio da 81/14
+Ordnance #3  | Italian | Fucile-cc S
+Ordnance #4  | Italian | Cannone-cc da 37/45
+Ordnance #5  | Italian | Cannone da 47/32
+Ordnance #6  | Italian | Cannone da 65/17
+Ordnance #7  | Italian | Cannone da 70/15
+Ordnance #8  | Italian | Obice da 75/13
+Ordnance #9  | Italian | Cannone da 75/27
+Ordnance #10 | Italian | Obice da 75/18
+Ordnance #11 | Italian | Cannone da 75/32
+Ordnance #12 | Italian | Obice da 100/17
+Ordnance #13 | Italian | Cannone da 105/28
+Ordnance #14 | Italian | Obice da 149/13
+Ordnance #15 | Italian | Cannone da 149/35
+Ordnance #16 | Italian | Cannone da 149/40
+Ordnance #17 | Italian | Cannone-mitr. 20
+Ordnance #17 | Italian | Cannone-mitr. 20 (LF)
+Ordnance #18 | Italian | Cannone-aa 75/39
+Ordnance #19 | Italian | Cannone-aa 75/46
+Ordnance #20 | Italian | Cannone-aa 90/53

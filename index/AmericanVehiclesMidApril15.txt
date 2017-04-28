@@ -1,0 +1,62 @@
+Vehicle #1  | American | M2A4
+Vehicle #2  | American | M3 LT
+Vehicle #3  | American | M3A1 LT
+Vehicle #4  | American | M3A1 Satan
+Vehicle #5  | American | M5A1
+Vehicle #6  | American | M24
+Vehicle #7  | American | M3 MT (MA)
+Vehicle #7  | American | M3 MT (SA)
+Vehicle #8  | American | M4
+Vehicle #9  | American | M4A1
+Vehicle #10 | American | M4A2
+Vehicle #11 | American | M4A2 (L)
+Vehicle #12 | American | M4A3
+Vehicle #13 | American | M4A3(75)W
+Vehicle #14 | American | M4A3E2
+Vehicle #14 | American | M4A3E2(L)
+Vehicle #15 | American | M4A1(76)W
+Vehicle #16 | American | M4A3(76)W
+Vehicle #17 | American | M4(105)
+Vehicle #17 | American | M4A3(105)
+Vehicle #18 | American | M4 Tankdozer
+Vehicle #19 | American | T1E3
+Vehicle #20 | American | Sherman Crab
+Vehicle #21 | American | POA-CWS-H1
+Vehicle #22 | American | M26
+Vehicle #23 | American | M10 GMC
+Vehicle #24 | American | M18 GMC
+Vehicle #25 | American | M36 GMC
+Vehicle #26 | American | M36B1 GMC
+Vehicle #27 | American | M2
+Vehicle #28 | American | M3
+Vehicle #29 | American | M3A1
+Vehicle #30 | American | M3(MMG)
+Vehicle #30 | American | M3(HMG)
+Vehicle #31 | American | M4 MC
+Vehicle #32 | American | M4A1 MC
+Vehicle #33 | American | M21 MC
+Vehicle #34 | American | M3 GMC
+Vehicle #35 | American | T30 HMC
+Vehicle #36 | American | T19 HMC
+Vehicle #37 | American | M15A1 MGMC
+Vehicle #38 | American | M16 MGMC
+Vehicle #39 | American | M3A1 SC
+Vehicle #40 | American | M20
+Vehicle #41 | American | T8
+Vehicle #42 | American | M8
+Vehicle #43 | American | M8 HMC
+Vehicle #44 | American | M7 HMC
+Vehicle #45 | American | M12 GMC
+Vehicle #46 | American | LVT(A)1
+Vehicle #47 | American | LVT(A)4
+Vehicle #48 | American | M4 DD
+Vehicle #49 | American | LVT2
+Vehicle #50 | American | LVT(A)2
+Vehicle #51 | American | LVT4
+Vehicle #52 | American | DUKW
+Vehicle #53 | American | 1/4-Ton Jeep GPA
+Vehicle #54 | American | 1/4-Ton Jeep
+Vehicle #55 | American | 3/4-Ton
+Vehicle #56 | American | 1 1/2-Ton
+Vehicle #57 | American | 2 1/2-Ton
+Vehicle #58 | American | 7 1/2-Ton

@@ -1,0 +1,132 @@
+Vehicle #1  | British | Mark VIB
+Vehicle #1  | British | Mark VIC
+Vehicle #2  | British | Tetrarch
+Vehicle #2  | British | Tetrarch CS
+Vehicle #3  | British | Stuart I(a)
+Vehicle #3  | British | Stuart III(a)
+Vehicle #4  | British | Stuart V(a)
+Vehicle #5  | British | Locust(a)
+Vehicle #6  | British | A9
+Vehicle #6  | British | A9 CS
+Vehicle #7  | British | A10 Mk IA
+Vehicle #7  | British | A10 Mk IA CS
+Vehicle #8  | British | A13 Mk I
+Vehicle #8  | British | A13 Mk II
+Vehicle #8  | British | A13 Mk II CS
+Vehicle #9  | British | Crusader I
+Vehicle #9  | British | Crusader I CS
+Vehicle #9  | British | Crusader II
+Vehicle #9  | British | Crusader II CS
+Vehicle #10 | British | Crusader III
+Vehicle #11 | British | Grant(a) (MA)
+Vehicle #11 | British | Grant(a) (SA)
+Vehicle #11 | British | Lee(a) (MA)
+Vehicle #11 | British | Lee(a) (SA)
+Vehicle #12 | British | Sherman II(a)
+Vehicle #13 | British | Sherman III(a)
+Vehicle #14 | British | Sherman V(a)
+Vehicle #15 | British | Sherman IIA(a)
+Vehicle #16 | British | Sherman IIC(a)
+Vehicle #16 | British | Sherman VC(a)
+Vehicle #17 | British | Sherman IB(a)
+Vehicle #18 | British | Centaur IV
+Vehicle #19 | British | Cromwell IV
+Vehicle #20 | British | Cromwell VI
+Vehicle #19 | British | Cromwell VII
+Vehicle #20 | British | Cromwell VIII
+Vehicle #21 | British | Challenger
+Vehicle #22 | British | Comet
+Vehicle #23 | British | Sherman Dozer(a)
+Vehicle #24 | British | Sherman Crab(a)
+Vehicle #25 | British | Matilda I
+Vehicle #25 | British | Matilda I (6)
+Vehicle #26 | British | Matilda II
+Vehicle #26 | British | Matilda II CS
+Vehicle #27 | British | Valentine II
+Vehicle #28 | British | Valentine V
+Vehicle #29 | British | Valentine VIII
+Vehicle #30 | British | Valentine XI
+Vehicle #31 | British | Churchill I (MA)
+Vehicle #31 | British | Churchill I (SA)
+Vehicle #32 | British | Churchill IV
+Vehicle #00 | _unused_ | _unused_
+Vehicle #33 | British | Churchill V
+Vehicle #34 | British | Churchill VI
+Vehicle #35 | British | Churchill VII
+Vehicle #35 | British | Churchill VIII
+Vehicle #36 | British | Valen. Bridgelayer
+Vehicle #36 | British | Church. Bridgelayer
+Vehicle #37 | British | Churchill AVRE
+Vehicle #38 | British | Churchill Crocodile
+Vehicle #39 | British | Deacon
+Vehicle #40 | British | Wolverine(a)
+Vehicle #40 | British | Achilles(a)
+Vehicle #41 | British | Archer
+Vehicle #42 | British | Daimler
+Vehicle #42 | British | Lynx
+Vehicle #43 | British | Humber
+Vehicle #44 | British | Stuart Recce(a)
+Vehicle #45 | British | Humber III LRC
+Vehicle #45 | British | Otter
+Vehicle #46 | British | Morris CS9
+Vehicle #47 | British | Rolls Royce
+Vehicle #48 | British | Marm.-Herr. II ME
+Vehicle #49 | British | Marm.-Herr. IIv
+Vehicle #48 | British | Marm.-Herr. III MFF
+Vehicle #48 | British | Marm.-Herr. III ME
+Vehicle #49 | British | Marm.-Herr. IIIv
+Vehicle #50 | British | Humber II
+Vehicle #50 | British | Humber III
+Vehicle #51 | British | Humber IV
+Vehicle #52 | British | Daimler AC
+Vehicle #53 | British | AEC I
+Vehicle #53 | British | AEC II
+Vehicle #53 | British | AEC III
+Vehicle #54 | British | Staghound I(a)
+Vehicle #54 | British | Staghound II(a)
+Vehicle #55 | British | Bishop
+Vehicle #56 | British | Priest(a)
+Vehicle #57 | British | Sexton(a)
+Vehicle #58 | British | M3 GMC(a)
+Vehicle #59 | British | Mark VI AA
+Vehicle #60 | British | Crusader AA
+Vehicle #61 | British | M17 MGMC(a)
+Vehicle #62 | British | Humber AA
+Vehicle #62 | British | Staghound AA(a)
+Vehicle #63 | British | M5(a)
+Vehicle #63 | British | M9(a)
+Vehicle #63 | British | M5A1(a)
+Vehicle #63 | British | M9A1(a)
+Vehicle #64 | British | Carrier A
+Vehicle #64 | British | Carrier B
+Vehicle #64 | British | Carrier C
+Vehicle #65 | British | Carrier, MMG A
+Vehicle #65 | British | Carrier, MMG B
+Vehicle #66 | British | Carrier, 2-in MTR
+Vehicle #67 | British | Carrier, 3-in MTR
+Vehicle #68 | British | Priest Kangaroo(a)
+Vehicle #68 | British | Ram Kangaroo(a)
+Vehicle #69 | British | White(a)
+Vehicle #70 | British | Carrier, IP MK IIA
+Vehicle #70 | British | Carrier, IP Mk IIB
+Vehicle #70 | British | Carrier, IP AOV
+Vehicle #71 | British | Carrier, IP 3-in MTR
+Vehicle #72 | British | Carrier, Wasp
+Vehicle #72 | British | Badger(a)
+Vehicle #73 | British | Buffalo Mk II(a)
+Vehicle #73 | British | Buffalo Mk IV(a)
+Vehicle #74 | British | Sherman III DD(a)
+Vehicle #75 | British | DUKW(a)
+Vehicle #76 | British | Terrapin Mk I
+Vehicle #77 | British | 2pdr Portee
+Vehicle #78 | British | Morris C9/B
+Vehicle #79 | British | Loyd Carrier
+Vehicle #80 | British | Quad FAT
+Vehicle #81 | British | 15-cwt Truck
+Vehicle #82 | British | 30-cwt Truck
+Vehicle #83 | British | 3-Ton Lorry
+Vehicle #84 | British | 1/4-Ton Jeep(a)
+Vehicle #85 | British | 3/4-Ton Truck(a)
+Vehicle #85 | British | 1 1/2-Ton Truck(a)
+Vehicle #85 | British | 2 1/2-Ton Truck(a)
+Vehicle #85 | British | 7 1/2-Ton Truck(a)

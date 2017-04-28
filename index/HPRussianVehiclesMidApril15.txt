@@ -1,0 +1,32 @@
+Vehicle #1.1  | Russian  | T-27
+Vehicle #6.1  | Russian  | T-26 M31
+Vehicle #6.2  | Russian  | T-26 M32
+Vehicle #6.3  | Russian  | OT-26
+Vehicle #6.4  | Russian  | ST-26
+Vehicle #11.1 | Russian  | T-28 M34(L)
+Vehicle #12.1 | Russian  | T-28E M40(L)
+Vehicle #21.1 | Russian  | SMK (MA)
+Vehicle #21.1 | Russian  | SMK (SA)
+Vehicle #21.2 | Russian  | T-100 (MA)
+Vehicle #21.2 | Russian  | T-100 (SA)
+Vehicle #44.1 | Russian  | LANO AT
+Vehicle #44.2 | Russian  | LANO AA
+Vehicle #46.2 | Russian  | STZ-3
+Vehicle #46.3 | Russian  | STZ-5
+Vehicle #47.1 | Russian  | NKL-6
+Vehicle #47.1 | Russian  | NKL-16
+Vehicle #47.2 | Russian  | NKL-26
+Vehicle #47.3 | Russian  | RF-8-GAZ-98
+Vehicle #48   | Russian  | Stuart III(a)
+Vehicle #49   | Russian  | Lee(a) (MA)
+Vehicle #49   | Russian  | Lee(a) (SA)
+Vehicle #50   | Russian  | Sherman III(a)
+Vehicle #50.1 | Russian  | Sherman III(L)(a)
+Vehicle #51   | Russian  | Matilda II(b)
+Vehicle #52.1 | Russian  | Valentine V(b)
+Vehicle #52.2 | Russian  | Valentine VIII(b)
+Vehicle #53   | Russian  | Churchill III(b)
+Vehicle #54   | Russian  | M3A1 SC(a)
+Vehicle #59   | Russian  | Jeep GPA(a)
+Vehicle #60   | Russian  | DUKW(a)
+Vehicle #00   | _unused_ | _unused_

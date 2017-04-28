@@ -6,6 +6,8 @@ import tempfile
 import locale
 from collections import namedtuple
 
+from PyQt5.QtWidgets import QMessageBox
+
 from pdfminer.pdfinterp import PDFResourceManager , PDFPageInterpreter
 from pdfminer.converter import PDFPageAggregator
 from pdfminer.layout import LAParams , LTTextBoxHorizontal
@@ -20,8 +22,10 @@ from asl_cards.db import AslCard , AslCardImage
 
 class PdfParser:
 
-    def __init__( self , progress=None  , progress2=None ) :
+    def __init__( self , index_dir , ask=None , progress=None  , progress2=None ) :
         # initialize
+        self.index_dir = index_dir
+        self.ask = ask # nb: for asking the user something during processing
         self.progress = progress # nb: for tracking file progress
         self.progress2 = progress2 # nb: for tracking page progress within a file
         self.cancelling = False
@@ -39,34 +43,84 @@ class PdfParser:
             ]
         # parse each file
         cards = []
-        for fname in fnames :
+        for file_no,fname in enumerate(fnames) :
             if self.cancelling : raise RuntimeError("Cancelled.")
-            cards.extend( self._do_parse_file( fname , max_pages , images ) )
+            file_cards = self._do_parse_file( float(file_no)/len(fnames) , fname , max_pages , images )
+            if file_cards :
+                cards.extend( file_cards )
+        self._progress( 1.0 , "Done." )
+        # filter out placeholder cards
+        cards = [ c for c in cards if c.nationality != "_unused_" and c.name != "_unused_" ]
         return cards
 
-    def _do_parse_file( self , fname , max_pages , images ) :
-        # extract the details of each card
-        rmgr = PDFResourceManager()
-        laparams = LAParams()
-        dev = PDFPageAggregator( rmgr , laparams=laparams )
-        interp = PDFPageInterpreter( rmgr , dev )
+    def _do_parse_file( self , pval , fname , max_pages , images ) :
         cards = []
-        with open(fname,"rb") as fp :
-            self._progress( 0 , "Analyzing {}...".format( os.path.split(fname)[1] ) )
-            pages = list( PDFPage.get_pages( fp ) )
-            for page_no,page in enumerate(pages) :
-                if self.cancelling : raise RuntimeError("Cancelled.")
-                self._progress2( float(page_no) / len(pages) )
-                page_cards = self._parse_page( cards , interp , page_no , page )
-                cards.extend( page_cards )
-                if max_pages > 0 and 1+page_no >= max_pages :
-                    break
-        self._progress( 1.0 , "Done." )
+        # check if we have an index for this file
+        # NOTE: We originally tried to get the details of each card by parsing the PDF files but unfortunately,
+        # the text was coming out garbled. We allow corrections to be supplied in an external file, but if we're
+        # going to do that, we might as well not bother parsing the PDF :-/ (especially since it's so insanely slow).
+        split = os.path.split( fname )
+        index_fname = os.path.join(
+            self.index_dir if self.index_dir else "" ,
+            os.path.splitext(split[1])[0]+".txt"
+        )
+        if os.path.isfile( index_fname ) :
+            # yup - just generate the AslCard's from that
+            # NOTE: It would be nice to store these files as JSON, or something similar, but we want
+            # to keep them easy for end-users to change, if some values need to be tweaked.
+            self._progress( pval , "Reading card details from {}...".format( os.path.split(index_fname)[1] ) )
+            for line_buf in open(index_fname,"r") :
+                line_buf = line_buf.strip()
+                if line_buf == "" or line_buf.startswith(("#","'",";","//")) :
+                    continue
+                fields = line_buf.split( "|" )
+                if len(fields) != 3 :
+                    raise RuntimeError( "Invalid index line: {}".format( line_buf ) )
+                fields = [ f.strip() for f in fields ]
+                ncards = len( cards )
+                cards.append( AslCard(
+                    card_tag = fields[0] ,
+                    nationality = fields[1] ,
+                    name = fields[2] ,
+                    page_id = 1 + ncards/2 ,
+                    page_pos = ncards % 2
+                ) )
+        else :
+            # ask the user if they want to try parsing the PDF
+            if self.ask :
+                rc = self.ask(
+                    "Can't find an index file for {}.\n\nDo you want to try parsing the PDF (slow and unreliable)?".format(
+                        os.path.split( fname )[ 1 ]
+                    ) ,
+                    QMessageBox.Yes | QMessageBox.No , QMessageBox.No
+                )
+                if rc != QMessageBox.Yes :
+                    return None
+            # extract each AslCard from the file
+            self._progress( pval , "Analyzing {}...".format( os.path.split(fname)[1] ) )
+            rmgr = PDFResourceManager()
+            laparams = LAParams()
+            dev = PDFPageAggregator( rmgr , laparams=laparams )
+            interp = PDFPageInterpreter( rmgr , dev )
+            with open(fname,"rb") as fp :
+                pages = list( PDFPage.get_pages( fp ) )
+                for page_no,page in enumerate(pages) :
+                    if self.cancelling : raise RuntimeError("Cancelled.")
+                    self._progress2( float(page_no) / len(pages) )
+                    page_cards = self._parse_page( cards , interp , page_no , page )
+                    cards.extend( page_cards )
+                    if max_pages > 0 and 1+page_no >= max_pages :
+                        break
         # extract the card images
         if images :
+            self._progress( pval , "Extracting images from {}...".format( os.path.split(fname)[1] ) )
             card_images = self._extract_images( fname , max_pages )
             if len(cards) != len(card_images) :
-                raise RuntimeError( "Found {} cards, {} card images.".format( len(cards) , len(card_images) ) )
+                raise RuntimeError(
+                    "Card mismatch in {}: found {} cards, {} card images.".format(
+                        fname , len(cards) , len(card_images)
+                    )
+                )
             for i in range(0,len(cards)) :
                 if self.cancelling : raise RuntimeError("Cancelled.")
                 cards[i].card_image = AslCardImage( image_data=card_images[i] )
@@ -138,7 +192,6 @@ class PdfParser:
         # FIXME! clean up left-over temp files before we start
         args = [ s.encode(locale.getpreferredencoding()) for s in args ]
         # FIXME! stop GhostScript from issuing warnings (stdout).
-        self._progress( 0 , "Extracting images from {}...".format( os.path.split(fname)[1] ) )
         ghostscript.Ghostscript( *args )
         # figure out how many files were created (so we can show progress)
         npages = 0
@@ -182,7 +235,6 @@ class PdfParser:
                 card_images.append( buf2 )
             # clean up
             os.unlink( fname )
-        self._progress( 1.0 , "Done." )
         return card_images
 
     def _crop_image( self , img , bbox , fname ) :
@@ -192,7 +244,7 @@ class PdfParser:
         bgd_col = img.getpixel( (0,0) )
         bgd_img = Image.new( img.mode , img.size , bgd_col )
         diff = ImageChops.difference( rgn , bgd_img )
-        diff = ImageChops.add(diff, diff, 2.0, -100)
+        #diff = ImageChops.add(diff, diff, 2.0, -100)
         bbox = diff.getbbox()
         if bbox :
             rgn = rgn.crop( bbox )

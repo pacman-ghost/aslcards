@@ -22,6 +22,7 @@ def get_extra_files( fspec ) :
 
 # initialize
 extra_files = []
+extra_files.extend( get_extra_files( "index/*.txt" ) )
 extra_files.extend( get_extra_files( "resources/*.ico" ) )
 extra_files.extend( get_extra_files( "resources/*.png" ) )
 extra_files.extend( get_extra_files( "ui/*ui" ) )

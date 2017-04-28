@@ -10,7 +10,11 @@ from asl_cards.parse import AslCard
 # ---------------------------------------------------------------------
 
 class TestRealData( TestCaseBase ) :
-    """Run tests using the real "ASL Cards" PDF files."""
+    """Run tests using the real "ASL Cards" PDF files.
+
+    NOTE: This set of tests are run separately since they are insanely slow, and require the real PDF files
+    that need to be purchased (and so aren't kept in source control).
+    """
 
     def _test_pdf_parser( self , fname , expected_cards ) :
         """Test the PDF parser."""

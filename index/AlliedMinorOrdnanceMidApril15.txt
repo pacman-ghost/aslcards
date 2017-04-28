@@ -1,0 +1,42 @@
+Ordnance #1  | Polish       | 46mm Gran. wz.36
+Ordnance #2  | Polish       | wz.35
+Ordnance #3  | Polish       | 75mm wz. 02/26
+Ordnance #4  | Polish       | 100mm wz. 14/19
+Ordnance #5  | Polish       | 75mm wz. 97/25
+Ordnance #6  | Belgian      | DBT
+Ordnance #7  | Belgian      | M76 A
+Ordnance #7  | Belgian      | M76 A (LF)
+Ordnance #8  | Belgian      | 7.6cm FRC
+Ordnance #9  | Belgian      | C47 FRC M32
+Ordnance #10 | Belgian      | C75 TR
+Ordnance #11 | Belgian      | C75 GP
+Ordnance #11 | Belgian      | C75 GP (LF)
+Ordnance #12 | Belgian      | Ob 105 GP
+Ordnance #12 | Belgian      | Ob 105 GP (LF)
+Ordnance #13 | Belgian      | C120 M31
+Ordnance #13 | Belgian      | C120 M31 (LF)
+Ordnance #14 | Belgian      | M27 FRC
+Ordnance #15 | Dutch        | Solothurn s/18-1100
+Ordnance #16 | Greek        | Vari 85/24 M
+Ordnance #17 | Greek        | OR 105/19 (f)
+Ordnance #18 | Greek        | 3.7cm Bofors (r)
+Ordnance #19 | Danish       | MC 20mm M-35
+Ordnance #20 | Yugoslav     | 3.7cm Inf Gun
+Ordnance #21 | Yugoslav     | 80mm M28/M33
+Ordnance #22 | Yugoslav     | 100mm M14/19
+Ordnance #23 | Allied Minor | Brandt Mortar (f)
+Ordnance #24 | Allied Minor | 37mm Bofors
+Ordnance #25 | Allied Minor | 3.7cm PaK 35/36 (g)
+Ordnance #26 | Allied Minor | Bohler M35 47mm
+Ordnance #27 | Allied Minor | 65mm wz.06
+Ordnance #28 | Allied Minor | 75mm wz.97
+Ordnance #29 | Allied Minor | Bofors M34
+Ordnance #30 | Allied Minor | 75M 19S (f)
+Ordnance #31 | Allied Minor | C105L 13 S (f)
+Ordnance #32 | Allied Minor | 120mm wz. 09/31
+Ordnance #33 | Allied Minor | 155mm 17 S (f)
+Ordnance #34 | Allied Minor | Mitra. de 13.2 CAJ (f)
+Ordnance #35 | Allied Minor | 20mm Oerlikon
+Ordnance #35 | Allied Minor | 20mm Oerlikon (LF)
+Ordnance #36 | Allied Minor | 40mm Bofors
+Ordnance #36 | Allied Minor | 40mm Bofors (LF)

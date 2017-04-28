@@ -1,0 +1,52 @@
+Vehicle #1  | French   | FT-17M
+Vehicle #1  | French   | FT-17C
+Vehicle #1  | French   | FT-17 75BS
+Vehicle #2  | French   | AMR 33
+Vehicle #3  | French   | AMR 35
+Vehicle #3  | French   | AMR 35(L)
+Vehicle #4  | French   | R35
+Vehicle #5  | French   | H35
+Vehicle #6  | French   | FCM 36
+Vehicle #7  | French   | H39
+Vehicle #8  | French   | H39(L)
+Vehicle #8  | French   | H35(L)
+Vehicle #8  | French   | R35(L)
+Vehicle #9  | French   | R40
+Vehicle #10 | French   | D1
+Vehicle #11 | French   | D2
+Vehicle #11 | French   | D2(L)
+Vehicle #12 | French   | S35
+Vehicle #13 | French   | B1-bis (MA)
+Vehicle #13 | French   | B1-bis (SA)
+Vehicle #14 | French   | Valentine V(b)
+Vehicle #15 | French   | AM Dodge(a)
+Vehicle #16 | French   | AMD 20 cv TOE
+Vehicle #17 | French   | AMD 50 AM
+Vehicle #17 | French   | AMD 80 AM
+Vehicle #18 | French   | AMD 35
+Vehicle #19 | French   | Laffly W15T CC
+Vehicle #20 | French   | Ac de 75 Conus(b)
+Vehicle #20 | French   | Ac de 75 mle 97
+Vehicle #21 | French   | Cam. de Mitr. CA
+Vehicle #21 | French   | Cam. de 13.2 CAJ
+Vehicle #21 | French   | Camion de 20 CA
+Vehicle #21 | French   | Ac de 25 CA
+Vehicle #22 | French   | Ac de 40 CA(a)
+Vehicle #23 | French   | Ac de 75 mle 13/34
+Vehicle #24 | French   | AMC 29
+Vehicle #25 | French   | C-K P17
+Vehicle #25 | French   | C-K P19
+Vehicle #26 | French   | SOMUA MCG
+Vehicle #27 | French   | Unic P107
+Vehicle #28 | French   | Renault UE
+Vehicle #29 | French   | Lorraine 38L
+Vehicle #30 | French   | Lorraine 37L 44
+Vehicle #31 | French   | Carrier AC(b)
+Vehicle #32 | French   | Latil TAR H2
+Vehicle #33 | French   | Laffly S15T
+Vehicle #34 | French   | Laffly S20TL
+Vehicle #35 | French   | Laffly V15T
+Vehicle #36 | French   | Peugeot 202
+Vehicle #36 | French   | Citroën 23
+Vehicle #36 | French   | Renault AGR2
+Vehicle #00 | _unused_ |_unused_ 

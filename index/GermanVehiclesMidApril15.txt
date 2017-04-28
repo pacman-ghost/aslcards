@@ -1,0 +1,120 @@
+Vehicle #1    | German | PzKpfw IB
+Vehicle #2    | German | PzKpfw IIA
+Vehicle #3    | German | PzKpfw IIF 
+Vehicle #4    | German | PzKpfw IIF (FI)
+Vehicle #5    | German | PzKpfw IIL
+Vehicle #6    | German | PzKpfw 35t
+Vehicle #7    | German | PzKpfw 38(t)A
+Vehicle #8    | German | PzKpfw 38(t)E
+Vehicle #9    | German | Aufklaerer 38(t)
+Vehicle #9.1  | German | FT-17 730m(f)
+Vehicle #9.1  | German | FT-17 730(f)
+Vehicle #9.2  | German | 38H 735(f)
+Vehicle #9.3  | German | 35-S 739(f)
+Vehicle #10   | German | PzKpfw IIID
+Vehicle #11   | German | PzKpfw IIIF
+Vehicle #12   | German | PzKpfw IIIG
+Vehicle #13   | German | PzKpfw IIIH
+Vehicle #14   | German | PzKpfw IIIJ
+Vehicle #15   | German | PzKpfw IIIL
+Vehicle #16   | German | PzKpfw IIIN
+Vehicle #17   | German | PzKpfw III(FI)
+Vehicle #18   | German | PzKpfw IVA
+Vehicle #19   | German | PzKpfw IVC
+Vehicle #20   | German | PzKpfw IVD
+Vehicle #21   | German | PzKpfw IVE
+Vehicle #22   | German | PzKpfw IVF1 
+Vehicle #23   | German | PzKpfw IVF2
+Vehicle #24   | German | PzKpfw IVH
+Vehicle #25   | German | PzKpfw IVJ
+Vehicle #26   | German | PzKpfw VD
+Vehicle #27   | German | PzKpfw VG
+Vehicle #28   | German | PzKpfw M15/42 (i)
+Vehicle #29   | German | PzKpfw P26/40 (i)
+Vehicle #30   | German | PzKpfw VIE
+Vehicle #31   | German | PzKpfw VIE (L)
+Vehicle #32   | German | PzKpfw VIB
+Vehicle #33   | German | StuG IIIB
+Vehicle #34   | German | StuG IIIG
+Vehicle #35   | German | StuG IIIG (L)
+Vehicle #36   | German | StuH 42
+Vehicle #35   | German | StuH 42 (L)
+Vehicle #37   | German | StuPz IV
+Vehicle #38   | German | PzJg Tiger
+Vehicle #39   | German | StuG 75/18 (i)
+Vehicle #40   | German | StuG 75/34 (i)
+Vehicle #41   | German | StuG 105/25 (i)
+Vehicle #42   | German | StuG 75/46 (i)
+Vehicle #43   | German | PzJg I
+Vehicle #44   | German | PzJg 35R (f)
+Vehicle #44.1 | German | Pz 35R 731 (f)
+Vehicle #45   | German | Marder I (f)
+Vehicle #45.1 | German | GSW 39H(f) Pak
+Vehicle #46   | German | Marder II
+Vehicle #47   | German | Marder III(t)H
+Vehicle #48   | German | Marder III(t)M
+Vehicle #49   | German | PzJg III/IV
+Vehicle #50   | German | JgdPz 38(t)
+Vehicle #51   | German | JgdPz 38(t) (FI)
+Vehicle #52   | German | JgdPz IV
+Vehicle #52   | German | JgdPz IV (L)
+Vehicle #53   | German | StuIG 33B
+Vehicle #54   | German | JgdPz IV/70
+Vehicle #55   | German | JgdPz V
+Vehicle #56   | German | JgdPz VI
+Vehicle #57   | German | SPW 250/1
+Vehicle #58   | German | SPW 250/sMG
+Vehicle #59   | German | SPW 250/7
+Vehicle #60   | German | SPW 250/8
+Vehicle #61   | German | SPW 250/9
+Vehicle #62   | German | SPW 250/10
+Vehicle #63   | German | SPW 251/1
+Vehicle #58   | German | SPW 251/sMG
+Vehicle #59   | German | SPW 251/2
+Vehicle #64   | German | SPW 251/9
+Vehicle #65   | German | SPW 251/10
+Vehicle #66   | German | SPW 251/16
+Vehicle #66.1 | German | SPW 251/21
+Vehicle #67   | German | SPW 251/22
+Vehicle #67.1 | German | SPW S307 (f)
+Vehicle #67.2 | German | mSPW S307 (f)
+Vehicle #68   | German | Kfz 13
+Vehicle #69   | German | PSW 221
+Vehicle #70   | German | PSW 222
+Vehicle #70   | German | PSW 222 (L)
+Vehicle #71   | German | PSW 231 (6 rad)
+Vehicle #72   | German | PSW 231 (8 rad)
+Vehicle #72   | German | PSW 232 (8 rad)
+Vehicle #73   | German | PSW 233
+Vehicle #74   | German | PSW 234/1
+Vehicle #75   | German | PSW 234/2
+Vehicle #76   | German | PSW 234/3
+Vehicle #77   | German | PSW 234/4
+Vehicle #78   | German | sIG IB
+Vehicle #79   | German | sIG II
+Vehicle #80   | German | sIG 38(t)M
+Vehicle #81   | German | PzA II
+Vehicle #82   | German | PzA LrS(f)
+Vehicle #82.1 | German | GSW 39H (f)
+Vehicle #83   | German | PzA III/IV
+Vehicle #84   | German | FlaKPz 38(t)
+Vehicle #85   | German | 37 FlaK/Pz IV
+Vehicle #85   | German | Moebelwagen
+Vehicle #86   | German | FlaKPz IV/20
+Vehicle #87   | German | FlaKPz IV/37
+Vehicle #88   | German | SdKfz 10/4
+Vehicle #89   | German | SdKfz 6/2
+Vehicle #90   | German | SdKfz 7/1
+Vehicle #91   | German | Kfz 4
+Vehicle #92   | German | 2cm FlaK LKW
+Vehicle #92   | German | 3.7cm FlaK LKW
+Vehicle #93   | German | Goliath
+Vehicle #94   | German | Kfz 1
+Vehicle #95   | German | Kfz 1/20
+Vehicle #96   | German | Opel 6700 (Blitz)
+Vehicle #96   | German | Buessing-NAG 4500
+Vehicle #97   | German | SdKfz 2
+Vehicle #98   | German | SfKfz 7
+Vehicle #99   | German | SdKfz 11
+Vehicle #88.1 | German | SdKfz 10/5
+Vehicle #37.1 | German | Sturmtiger

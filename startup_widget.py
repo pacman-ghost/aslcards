@@ -1,7 +1,7 @@
 import os
 
 from PyQt5 import uic
-from PyQt5.QtCore import QThread , pyqtSignal
+from PyQt5.QtCore import Qt , QMetaObject , QThread , pyqtSignal , pyqtSlot , Q_ARG , Q_RETURN_ARG
 from PyQt5.QtWidgets import QWidget , QFrame , QFileDialog , QMessageBox
 from PyQt5.QtGui import QPixmap , QIcon
 
@@ -34,6 +34,8 @@ class AnalyzeThread( QThread ) :
                 os.unlink( self.db_fname )
             # parse the files
             self.parser = PdfParser(
+                os.path.join( globals.base_dir , "index" ) ,
+                ask = self.ask ,
                 progress = lambda pval,msg: self.progress_signal.emit( -1 if pval is None else pval , msg ) ,
                 progress2 = lambda pval: self.progress2_signal.emit( pval )
             )
@@ -50,14 +52,32 @@ class AnalyzeThread( QThread ) :
             # notify slots that we've finished
             self.completed_signal.emit( "" )
 
+    def ask( self , msg , btns , default ) :
+        """Ask the user a question."""
+        # NOTE: We are running in a worker thread, so we need to delegate showing the message box
+        # to the GUI thread.
+        retarg = Q_RETURN_ARG( QMessageBox.StandardButton )
+        QMetaObject.invokeMethod(
+            StartupWidget._instance , "on_ask" , Qt.BlockingQueuedConnection ,
+            retarg ,
+            Q_ARG( str , msg ) ,
+            Q_ARG( QMessageBox.StandardButtons , btns ) ,
+            Q_ARG( QMessageBox.StandardButton , default ) ,
+        )
+        # FIXME! How do we get the return value?! :-/
+        return StartupWidget._on_ask_retval
+
 # ---------------------------------------------------------------------
 
 class StartupWidget( QWidget ) :
     """This form lets the user initialize a new database, or load an existing one."""
 
+    _instance = None
+
     def __init__( self , db_fname , parent=None ) :
         # initialize
         super(StartupWidget,self).__init__( parent=parent )
+        StartupWidget._instance = self
         self.analyze_thread = None
         # FUDGE! Workaround recursive import's :-/
         global MainWindow
@@ -169,6 +189,12 @@ class StartupWidget( QWidget ) :
     def on_analyze_progress2( self , pval ) :
         """Update the analysis progress in the UI."""
         self.pb_pages.setValue( int( 100*pval + 0.5 ) )
+
+    @pyqtSlot( str , QMessageBox.StandardButtons , QMessageBox.StandardButton , result=QMessageBox.StandardButton )
+    def on_ask( self , msg , buttons , default ) :
+        """Ask the user a question."""
+        StartupWidget._on_ask_retval = MainWindow.ask( msg , buttons , default )
+        return StartupWidget._on_ask_retval
 
     def on_cancel_analyze( self ) :
         """Cancel the analyze worker thread."""

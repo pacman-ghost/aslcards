@@ -1,0 +1,35 @@
+Ordnance #1  | German | 5cm IeGrW
+Ordnance #2  | German | 8cm GrW 34
+Ordnance #3  | German | 10cm NbW 35
+Ordnance #4  | German | 12cm GrW 42
+Ordnance #5  | German | 2.8cm sPzB 41
+Ordnance #6  | German | 3.7cm PaK 35/36
+Ordnance #7  | German | 4.2cm IePaK 41
+Ordnance #8  | German | 5cm PaK 38
+Ordnance #9  | German | 7.5cm PaK 97/38
+Ordnance #10 | German | 7.5cm PaK 40
+Ordnance #11 | German | 7.62cm PaK 36r
+Ordnance #12 | German | 8.8cm PaK 43
+Ordnance #12 | German | 8.8cm PaK 43 (LF)
+Ordnance #13 | German | 8.8cm PaK 43/41
+Ordnance #14 | German | 12.8cm K 81/1
+Ordnance #15 | German | 7.5cm IeIG 18
+Ordnance #16 | German | 15cm sIG 33
+Ordnance #17 | German | 7.5cm LG 40
+Ordnance #18 | German | 10.5cm LG 42
+Ordnance #19 | German | 7.5cm IeFK 16nA
+Ordnance #20 | German | 10.5cm IeFH 18
+Ordnance #21 | German | s 10cm K 18
+Ordnance #22 | German | 15cm sFH 18
+Ordnance #23 | German | 15cm K 18
+Ordnance #24 | German | 17cm K 18
+Ordnance #25 | German | 2cm FlaK 30
+Ordnance #25 | German | 2cm FlaK 30 (LF)
+Ordnance #26 | German | 2cm FlaK 38
+Ordnance #26 | German | 2cm FlaK 38 (LF)
+Ordnance #27 | German | 2cm FlaK vierling 38
+Ordnance #28 | German | 3.7cm FlaK 36 o.37
+Ordnance #29 | German | 3.7cm FlaK 43
+Ordnance #30 | German | 8.8cm FlaK 18
+Ordnance #30 | German | 8.8cm FlaK 18 (LF)
+
