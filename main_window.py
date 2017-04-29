@@ -86,6 +86,7 @@ class MainWindow( QMainWindow ) :
         # we can now close the startup widget and replace it with the main tab widget
         self.tab_widget = QTabWidget( self )
         self.tab_widget.setTabsClosable( True )
+        self.tab_widget.tabCloseRequested.connect( self.on_tab_close_requested )
         self.setCentralWidget( self.tab_widget )
         # open the database
         db.open_database( db_fname , False )
@@ -118,6 +119,10 @@ class MainWindow( QMainWindow ) :
                 if type( self.tab_widget.widget(i) ) is AddCardWidget :
                     return i
         return None
+
+    def on_tab_close_requested( self , index ) :
+        """Handle the tab close request."""
+        self.tab_widget.removeTab( index )
 
     def closeEvent( self , evt ) :
         """Handle window close."""
