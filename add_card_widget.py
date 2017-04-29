@@ -1,49 +1,57 @@
 import os
 
 from PyQt5 import uic
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QDialog , QListWidgetItem
+from PyQt5.QtCore import Qt , pyqtSignal
+from PyQt5.QtWidgets import QWidget , QListWidgetItem
 
 import asl_cards.db as db
+from asl_cards.db import AslCard
 from constants import *
 import globals
 
 # ---------------------------------------------------------------------
 
-class AddCardDialog( QDialog ) :
+class AddCardWidget( QWidget ) :
     """Allow the user to select an ASL card, based on nationality & card type."""
+
+    # define our signals
+    accepted_signal = pyqtSignal( AslCard , name="accepted" )
+    cancelled_signal = pyqtSignal( name="cancelled" )
 
     def __init__( self , parent ) :
         # initialize
-        self.selected_card = None
-        super(AddCardDialog,self).__init__( parent=parent )
-        # initialize the dialog
-        uic.loadUi( os.path.join(globals.base_dir,"ui/add_card_dialog.ui") , self )
-        self.setMinimumSize( self.size() )
+        super().__init__( parent=parent )
+        # initialize the widget
+        uic.loadUi( os.path.join(globals.base_dir,"ui/add_card_widget.ui") , self )
         self.lb_cards.setSortingEnabled( True )
         w = self.buttons_widget
         self.xmargin = w.x()
         self.ymargin = self.size().height() - (w.y() + w.height())
-        # load the dialog
+        # load the widget
         for nationality in globals.cards :
             self.cbo_nationality.addItem( nationality )
         # connect our handlers
         self.cbo_nationality.currentIndexChanged[str].connect( self.on_nationality_changed )
         self.ok_button.clicked.connect( self.on_ok )
+        self.cancel_button.clicked.connect( self.on_cancel )
         for rb in [self.rb_vehicles,self.rb_ordnance] :
             rb.clicked.connect( self.on_card_type_changed )
-        # select the initial nationality (this will load the rest of the dialog)
+        # select the initial nationality (this will load the rest of the widget)
         self.cbo_nationality.setCurrentIndex( 0 )
         self.on_nationality_changed( self.cbo_nationality.itemText(0) )
 
     def on_ok( self ) :
-        # accept the currently selected card
+        """Accept the currently selected card."""
         item = self.lb_cards.currentItem()
-        self.selected_card = item.data(Qt.UserRole) if item else None
-        self.accept()
+        card = item.data(Qt.UserRole) if item else None
+        self.accepted_signal.emit( card )
+
+    def on_cancel( self ) :
+        """Cancel the widget."""
+        self.cancelled_signal.emit()
 
     def on_nationality_changed( self , val ) :
-        """Update the dialog when the active nationality is changed."""
+        """Update the widget when the active nationality is changed."""
         # reload the available cards for the selected nationality
         cards = globals.cards[ val ]
         self.lb_cards.clear()
@@ -65,7 +73,7 @@ class AddCardDialog( QDialog ) :
         self.on_card_type_changed()
 
     def on_card_type_changed( self ) :
-        """Update the dialog when the active card type is changed."""
+        """Update the widget when the active card type is changed."""
         self.lb_cards.clear()
         # figure out what type of cards to show
         if self.rb_vehicles.isChecked() :
@@ -86,6 +94,13 @@ class AddCardDialog( QDialog ) :
             self.lb_cards.addItem( item )
         self.lb_cards.setCurrentRow( 0 )
         self.lb_cards.setFocus()
+
+    def keyPressEvent( self , evt ) :
+        # handle the event
+        if evt.key() == Qt.Key_Return :
+            if not self.lb_cards.currentItem() :
+                QApplication.beep()
+            self.on_ok()
 
     def resizeEvent( self , evt ) :
         # handle the event

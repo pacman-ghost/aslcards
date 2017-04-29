@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MyDialog</class>
- <widget class="QDialog" name="MyDialog">
+ <class>AddCardWidget</class>
+ <widget class="QWidget" name="AddCardWidget">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -57,7 +57,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>&amp;Ordnance</string>
+     <string>Or&amp;dnance</string>
     </property>
    </widget>
    <widget class="QComboBox" name="cbo_nationality">

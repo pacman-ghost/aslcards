@@ -3,13 +3,13 @@ import os
 
 from PyQt5.QtCore import Qt , QPoint , QSize
 from PyQt5.QtWidgets import QApplication , QMainWindow , QVBoxLayout , QHBoxLayout , QWidget , QTabWidget , QLabel
-from PyQt5.QtWidgets import QDialog , QMessageBox , QAction
+from PyQt5.QtWidgets import QMessageBox , QAction
 from PyQt5.QtGui import QPainter , QPixmap , QIcon , QBrush
 
 import asl_cards.db as db
 from constants import *
 import globals
-from add_card_dialog import AddCardDialog
+from add_card_widget import AddCardWidget
 from startup_widget import StartupWidget
 
 # ---------------------------------------------------------------------
@@ -68,11 +68,10 @@ class MainWindow( QMainWindow ) :
         self.close_tab_action.triggered.connect( self.on_close_tab )
         file_menu.addAction( self.close_tab_action )
         action = QAction( "E&xit" , self )
-        action.setShortcut( "Ctrl+Q" )
         action.setStatusTip( "Close the program." )
         action.triggered.connect( self.close )
         file_menu.addAction( action )
-        self.tab_widget = None # FIXME! remove this when we make the "add card" dialog a tab
+        self.tab_widget = None
         self._update_ui()
         # load the window settings
         self.resize( globals.app_settings.value( MAINWINDOW_SIZE , QSize(500,300) ) )
@@ -112,6 +111,14 @@ class MainWindow( QMainWindow ) :
         """Update the window's UI."""
         self.close_tab_action.setEnabled( self.tab_widget.count() > 0 if self.tab_widget else False )
 
+    def _find_add_card_tab( self ) :
+        """Find the "add card" tab."""
+        if self.tab_widget :
+            for i in range(0,self.tab_widget.count()) :
+                if type( self.tab_widget.widget(i) ) is AddCardWidget :
+                    return i
+        return None
+
     def closeEvent( self , evt ) :
         """Handle window close."""
         # confirm the close
@@ -142,18 +149,38 @@ class MainWindow( QMainWindow ) :
             self.close()
 
     def on_add_card( self ) :
-        dlg = AddCardDialog( self )
-        rc = dlg.exec()
-        if rc == QDialog.Accepted :
-            # add a new tab for the selected card
-            card = dlg.selected_card
-            if not card :
-                assert False
-                return
-            w = AslCardWidget( card )
-            index = self.tab_widget.addTab( w , card.name )
+        """Ask the user to select a new ASL card to show."""
+        # check if the "add card" tab is already open
+        index = self._find_add_card_tab()
+        if index is not None :
+            # yup - switch to it
             self.tab_widget.setCurrentIndex( index )
-            self._update_ui()
+            return
+        # nope - open it
+        widget = AddCardWidget( self )
+        widget.accepted_signal.connect( self.on_add_card_accepted )
+        widget.cancelled_signal.connect( self.on_add_card_cancelled )
+        index = self.tab_widget.insertTab(
+            self.tab_widget.currentIndex() + 1 ,
+            widget , "(new card)"
+        )
+        self.tab_widget.setCurrentIndex( index )
+        self._update_ui()
+        widget.setFocus() # FIXME! s.b. to first child control
+    def on_add_card_accepted( self , card ) :
+        """Handle the user's card selection."""
+        index = self._find_add_card_tab()
+        assert index is not None
+        self.tab_widget.removeTab( index )
+        widget = self.tab_widget.insertTab( index , AslCardWidget(card) , card.name )
+        self.tab_widget.setCurrentIndex( index )
+        self._update_ui()
+    def on_add_card_cancelled( self ) :
+        """Cancel the "add card" widget."""
+        index = self._find_add_card_tab()
+        assert index is not None
+        self.tab_widget.removeTab( index )
+        self._update_ui()
 
     def on_close_tab( self ) :
         """Close the current tab."""
