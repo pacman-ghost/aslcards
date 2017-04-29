@@ -62,10 +62,18 @@ class MainWindow( QMainWindow ) :
         self.add_card_action.setStatusTip( "Add an ASL Card." )
         self.add_card_action.triggered.connect( self.on_add_card )
         file_menu.addAction( self.add_card_action )
+        self.close_tab_action = QAction(" &Close" , self )
+        self.close_tab_action.setShortcut( "Ctrl+W" )
+        self.close_tab_action.setStatusTip( "Close the current tab." )
+        self.close_tab_action.triggered.connect( self.on_close_tab )
+        file_menu.addAction( self.close_tab_action )
         action = QAction( "E&xit" , self )
+        action.setShortcut( "Ctrl+Q" )
         action.setStatusTip( "Close the program." )
         action.triggered.connect( self.close )
         file_menu.addAction( action )
+        self.tab_widget = None # FIXME! remove this when we make the "add card" dialog a tab
+        self._update_ui()
         # load the window settings
         self.resize( globals.app_settings.value( MAINWINDOW_SIZE , QSize(500,300) ) )
         self.move( globals.app_settings.value( MAINWINDOW_POSITION , QPoint(200,200) ) )
@@ -99,6 +107,10 @@ class MainWindow( QMainWindow ) :
     def ask( msg , buttons , default ) :
         """Ask the user a question."""
         return QMessageBox.question( None , APP_NAME , msg , buttons , default )
+
+    def _update_ui( self ) :
+        """Update the window's UI."""
+        self.close_tab_action.setEnabled( self.tab_widget.count() > 0 if self.tab_widget else False )
 
     def closeEvent( self , evt ) :
         """Handle window close."""
@@ -141,3 +153,13 @@ class MainWindow( QMainWindow ) :
             w = AslCardWidget( card )
             index = self.tab_widget.addTab( w , card.name )
             self.tab_widget.setCurrentIndex( index )
+            self._update_ui()
+
+    def on_close_tab( self ) :
+        """Close the current tab."""
+        index = self.tab_widget.currentIndex()
+        if index < 0 :
+            QApplication.beep()
+            return
+        self.tab_widget.removeTab( index )
+        self._update_ui()
