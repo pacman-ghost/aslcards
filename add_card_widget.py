@@ -32,6 +32,7 @@ class AddCardWidget( QWidget ) :
             self.cbo_nationality.addItem( nationality )
         # connect our handlers
         self.cbo_nationality.currentIndexChanged[str].connect( self.on_nationality_changed )
+        self.lb_cards.itemDoubleClicked.connect( self.on_card_doubleclicked )
         self.ok_button.clicked.connect( self.on_ok )
         self.cancel_button.clicked.connect( self.on_cancel )
         for rb in [self.rb_vehicles,self.rb_ordnance] :
@@ -94,6 +95,11 @@ class AddCardWidget( QWidget ) :
             self.lb_cards.addItem( item )
         self.lb_cards.setCurrentRow( 0 )
         self.lb_cards.setFocus()
+
+    def on_card_doubleclicked( self , item ) :
+        # handle the event
+        if item :
+            self.on_ok()
 
     def keyPressEvent( self , evt ) :
         # handle the event
