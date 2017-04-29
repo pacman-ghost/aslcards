@@ -26,6 +26,25 @@ class AnalyzeCancelledException( RuntimeError ) :
 
 # ---------------------------------------------------------------------
 
+# NOTE: Ghostscript extracts PDF pages to image files - this value defines where to put them.
+_EXTRACTED_IMAGES_FILENAME_TEMPLATE = os.path.join( tempfile.gettempdir() , "asl_cards-%d.png" )
+
+def _find_extracted_image_files() :
+    """Find the image files extracted by Ghostscript."""
+    fnames = []
+    # NOTE: We assume there are never more than 500 of these.
+    # This method is used to clean up files left over from a previous (failed) run, so we can't
+    # just start at 1 and increment as we look for files. We could do some funky stuff with
+    # os.listdir() and regex's, but we need the extracted files in page order, and it's more
+    # trouble than it's worth... :-/
+    for i in range(1,500) :
+        fname = _EXTRACTED_IMAGES_FILENAME_TEMPLATE % i
+        if os.path.isfile( fname ) :
+            fnames.append( fname )
+    return fnames
+
+# ---------------------------------------------------------------------
+
 class PdfParser:
 
     def __init__( self , index_dir , progress=None , progress2=None , on_ask=None , on_error=None ) :
@@ -203,35 +222,30 @@ class PdfParser:
 
     def _extract_images( self , fname , max_pages ) :
         """Extract card images from a file."""
+        # clean up any leftover extracted images from a previous run
+        # NOTE: It's important we do this, otherwise we might think they're part of this run.
+        for f in _find_extracted_image_files() :
+            os.unlink( f )
         # extract each page from the PDF as an image
-        fname_template = os.path.join( tempfile.gettempdir() , "asl_cards-%d.png" )
         resolution = 300 # pixels/inch
         args = [
             "_ignored_" , "-dQUIET" , "-dSAFER" , "-dNOPAUSE" ,
             "-sDEVICE=png16m" , "-r"+str(resolution) ,
-            "-sOutputFile="+fname_template ,
+            "-sOutputFile="+_EXTRACTED_IMAGES_FILENAME_TEMPLATE
         ]
         if max_pages > 0 :
             args.append( "-dLastPage={}".format(max_pages) )
         args.extend( [ "-f" , fname ] )
-        # FIXME! clean up left-over temp files before we start
         args = [ s.encode(locale.getpreferredencoding()) for s in args ]
         # FIXME! stop GhostScript from issuing warnings (stdout).
         ghostscript.Ghostscript( *args )
-        # figure out how many files were created (so we can show progress)
-        npages = 0
-        for i in range(0,99999) :
-            fname = fname_template % (1+i)
-            if not os.path.isfile( fname ) :
-                break
-            npages += 1
+        image_fnames = _find_extracted_image_files()
         # extract the cards from each page
         card_images = []
-        for page_no in range(0,npages) :
+        for page_no,fname in enumerate(image_fnames) :
             if self.cancelling : raise AnalyzeCancelledException()
             # open the next page image
-            self._progress2( float(page_no) / npages )
-            fname = fname_template % (1+page_no)
+            self._progress2( float(page_no) / len(image_fnames) )
             img = Image.open( fname )
             img_width , img_height = img.size
             # extract the cards (by splitting the page in half)
@@ -247,7 +261,7 @@ class PdfParser:
                 os.path.join( fname2[0] , fname2[1][0]+"b"+fname2[1][1] )
             )
             # check if this is the last page, and it has just 1 card on it
-            if page_no == npages-1 and size1[1] < 1000 and size2[1] < 1000 :
+            if page_no == len(image_fnames)-1 and size1[1] < 1000 and size2[1] < 1000 :
                 # yup - extract it
                 buf , _ = self._crop_image(
                     img , (0,0,img_width,img_height) ,
