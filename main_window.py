@@ -87,6 +87,7 @@ class MainWindow( QMainWindow ) :
         # we can now close the startup widget and replace it with the main tab widget
         self.tab_widget = QTabWidget( self )
         self.tab_widget.setTabsClosable( True )
+        self.tab_widget.setMovable( True )
         self.tab_widget.tabCloseRequested.connect( self.on_tab_close_requested )
         self.setCentralWidget( self.tab_widget )
         # open the database
