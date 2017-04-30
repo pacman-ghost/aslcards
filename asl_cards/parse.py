@@ -43,6 +43,34 @@ def _find_extracted_image_files() :
             fnames.append( fname )
     return fnames
 
+def _run_ghostscript( args ) :
+    """Run Ghostscript.
+
+    We have to do a bit of stuffing around to stop Ghostscript from printing warnings to the console.
+    This code was adapted from ghostscript's _gsprint.py.
+    """
+    # allocate a new Ghostscript instance
+    import ghostscript._gsprint as gsp
+    inst = gsp.new_instance()
+    # wrap stdin/stdout/stderr with dummy buffers
+    def wrap( stdin ) :
+        return gsp.c_stdstream_call_t(
+            lambda inst,buf,count: 0 if stdin else count
+        )
+    stdin_buf = wrap( True )
+    stdout_buf = wrap( False )
+    stderr_buf = wrap( False )
+    gsp.set_stdio( inst , stdin_buf , stdout_buf , stderr_buf )
+    try :
+        # run Ghostscript
+        args = [ s.encode(locale.getpreferredencoding()) for s in args ]
+        __Ghostscript = getattr( ghostscript , "__Ghostscript" )
+        __Ghostscript( inst , args )
+    finally :
+        # clean up
+        gsp.delete_instance( inst )
+        del inst
+
 # ---------------------------------------------------------------------
 
 class PdfParser:
@@ -236,9 +264,7 @@ class PdfParser:
         if max_pages > 0 :
             args.append( "-dLastPage={}".format(max_pages) )
         args.extend( [ "-f" , fname ] )
-        args = [ s.encode(locale.getpreferredencoding()) for s in args ]
-        # FIXME! stop GhostScript from issuing warnings (stdout).
-        ghostscript.Ghostscript( *args )
+        _run_ghostscript( args )
         image_fnames = _find_extracted_image_files()
         # extract the cards from each page
         card_images = []
