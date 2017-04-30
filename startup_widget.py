@@ -3,7 +3,7 @@ import os
 from PyQt5 import uic
 from PyQt5.QtCore import Qt , QMetaObject , QThread , pyqtSignal , pyqtSlot , Q_ARG , Q_RETURN_ARG
 from PyQt5.QtWidgets import QWidget , QFrame , QFileDialog , QMessageBox
-from PyQt5.QtGui import QPixmap , QIcon
+from PyQt5.QtGui import QPixmap , QIcon , QMovie
 
 from asl_cards.parse import PdfParser
 import asl_cards.db as db
@@ -99,6 +99,12 @@ class StartupWidget( QWidget ) :
         uic.loadUi( os.path.join(globals.base_dir,"ui/startup_widget.ui") , self )
         self.setMinimumSize( self.size() )
         self.frm_analyze_progress.hide()
+        # NOTE: The animation was created at loading.io:
+        #   color1=#047ab3 ; color2=#83bfdc ; bgd=#ffffff ; speed=2
+        self.progress_animation = QMovie( os.path.join( globals.base_dir , "resources/progress.gif" ) )
+        self.lbl_progress.setFrameStyle( QFrame.NoFrame )
+        self.lbl_progress.setScaledContents( True )
+        self.lbl_progress.setMovie( self.progress_animation )
         # initialize the widget
         self.lbl_analyze_icon.setPixmap(
             QPixmap( os.path.join( globals.base_dir , "resources/analyze.png" ) )
@@ -184,6 +190,7 @@ class StartupWidget( QWidget ) :
         # run the analysis (in a worker thread)
         self.frm_open_db.hide()
         self.frm_analyze_progress.show()
+        self.progress_animation.start()
         self._update_analyze_ui( False )
         self.btn_cancel_analyze.setEnabled( True )
         self.btn_cancel_analyze.clicked.connect( self.on_cancel_analyze )
@@ -228,6 +235,7 @@ class StartupWidget( QWidget ) :
     def on_analyze_completed( self , ex ) :
         # clean up
         self.analyze_thread = None
+        self.progress_animation.stop()
         # check if the analysis failed
         if ex :
             MainWindow.show_error_msg( "Analyze failed:\n\n{}".format( ex  ) )

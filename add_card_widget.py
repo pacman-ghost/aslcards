@@ -24,9 +24,6 @@ class AddCardWidget( QWidget ) :
         # initialize the widget
         uic.loadUi( os.path.join(globals.base_dir,"ui/add_card_widget.ui") , self )
         self.lb_cards.setSortingEnabled( True )
-        w = self.buttons_widget
-        self.xmargin = w.x()
-        self.ymargin = self.size().height() - (w.y() + w.height())
         # load the widget
         for nationality in globals.cards :
             self.cbo_nationality.addItem( nationality )
@@ -107,13 +104,3 @@ class AddCardWidget( QWidget ) :
             if not self.lb_cards.currentItem() :
                 QApplication.beep()
             self.on_ok()
-
-    def resizeEvent( self , evt ) :
-        # handle the event
-        w = self.buttons_widget
-        self.buttons_widget.setGeometry(
-            self.xmargin , self.size().height() - self.ymargin - w.height() ,
-            self.size().width() - 2*self.xmargin , w.height()
-        )
-        w = self.lb_cards
-        w.resize( self.size().width() - 2*self.xmargin , self.buttons_widget.y() - w.y() )

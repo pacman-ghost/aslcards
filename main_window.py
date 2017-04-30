@@ -63,7 +63,7 @@ class MainWindow( QMainWindow ) :
         self.add_card_action.setStatusTip( "Add an ASL Card." )
         self.add_card_action.triggered.connect( self.on_add_card )
         file_menu.addAction( self.add_card_action )
-        self.close_tab_action = QAction(" &Close" , self )
+        self.close_tab_action = QAction( "&Close" , self )
         self.close_tab_action.setShortcut( "Ctrl+W" )
         self.close_tab_action.setStatusTip( "Close the current tab." )
         self.close_tab_action.triggered.connect( self.on_close_tab )

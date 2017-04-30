@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>566</width>
-    <height>399</height>
+    <width>592</width>
+    <height>418</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -83,6 +83,12 @@
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
            <property name="text">
             <string>If this is the first time you have run this program, you need to analyze the PDF files first, and save the results in a database.</string>
            </property>
@@ -95,8 +101,30 @@
           </widget>
          </item>
          <item>
-          <widget class="QWidget" name="widget_5" native="true">
-           <layout class="QVBoxLayout" name="verticalLayout_3">
+          <widget class="QLabel" name="label_5">
+           <property name="font">
+            <font>
+             <pointsize>8</pointsize>
+             <italic>true</italic>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color:#444 ;</string>
+           </property>
+           <property name="text">
+            <string>&lt;html&gt;This needs &lt;a href=&quot;https://ghostscript.com&quot;&gt;Ghostscript&lt;/a&gt; to be installed.&lt;/html&gt;</string>
+           </property>
+           <property name="openExternalLinks">
+            <bool>true</bool>
+           </property>
+           <property name="textInteractionFlags">
+            <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse</set>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QWidget" name="widget" native="true">
+           <layout class="QHBoxLayout" name="horizontalLayout_6">
             <property name="spacing">
              <number>2</number>
             </property>
@@ -104,7 +132,7 @@
              <number>0</number>
             </property>
             <property name="topMargin">
-             <number>8</number>
+             <number>5</number>
             </property>
             <property name="rightMargin">
              <number>0</number>
@@ -122,6 +150,67 @@
               </property>
              </widget>
             </item>
+            <item>
+             <spacer name="horizontalSpacer">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_4">
+              <property name="font">
+               <font>
+                <pointsize>8</pointsize>
+                <weight>50</weight>
+                <italic>true</italic>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color:#444 ;</string>
+              </property>
+              <property name="text">
+               <string>These PDF files can be obtained &lt;a href=&quot;http://aslcards.com&quot;&gt;here&lt;/a&gt;.</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+              </property>
+              <property name="openExternalLinks">
+               <bool>true</bool>
+              </property>
+              <property name="textInteractionFlags">
+               <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse</set>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QWidget" name="widget_5" native="true">
+           <layout class="QVBoxLayout" name="verticalLayout_3">
+            <property name="spacing">
+             <number>2</number>
+            </property>
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
             <item>
              <widget class="QWidget" name="widget_6" native="true">
               <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -272,9 +361,9 @@
            <property name="frameShadow">
             <enum>QFrame::Raised</enum>
            </property>
-           <layout class="QVBoxLayout" name="verticalLayout_6">
+           <layout class="QHBoxLayout" name="horizontalLayout_9">
             <property name="spacing">
-             <number>2</number>
+             <number>0</number>
             </property>
             <property name="leftMargin">
              <number>0</number>
@@ -288,41 +377,96 @@
             <property name="bottomMargin">
              <number>0</number>
             </property>
-            <item>
-             <widget class="QProgressBar" name="pb_files">
-              <property name="value">
-               <number>24</number>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QProgressBar" name="pb_pages">
+            <item alignment="Qt::AlignTop">
+             <widget class="QLabel" name="lbl_progress">
               <property name="minimumSize">
                <size>
-                <width>0</width>
-                <height>15</height>
+                <width>50</width>
+                <height>50</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>16777215</width>
-                <height>15</height>
+                <width>50</width>
+                <height>50</height>
                </size>
               </property>
-              <property name="value">
-               <number>24</number>
+              <property name="styleSheet">
+               <string notr="true">margin:0 5px 5px 0;</string>
               </property>
-              <property name="textVisible">
-               <bool>false</bool>
+              <property name="frameShape">
+               <enum>QFrame::Box</enum>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="margin">
+               <number>0</number>
               </property>
              </widget>
             </item>
-            <item alignment="Qt::AlignRight">
-             <widget class="QPushButton" name="btn_cancel_analyze">
-              <property name="text">
-               <string>&amp;Cancel</string>
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_6">
+              <property name="spacing">
+               <number>2</number>
               </property>
-             </widget>
+              <item>
+               <widget class="QProgressBar" name="pb_files">
+                <property name="value">
+                 <number>24</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QProgressBar" name="pb_pages">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>15</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>15</height>
+                 </size>
+                </property>
+                <property name="value">
+                 <number>24</number>
+                </property>
+                <property name="textVisible">
+                 <bool>false</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_10">
+                <property name="spacing">
+                 <number>0</number>
+                </property>
+                <item>
+                 <spacer name="horizontalSpacer_2">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="btn_cancel_analyze">
+                  <property name="text">
+                   <string>&amp;Cancel</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
             </item>
            </layout>
           </widget>
@@ -387,6 +531,12 @@
          </property>
          <item>
           <widget class="QLabel" name="label_3">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
            <property name="text">
             <string>If you have already analyzed the PDF files, open the &amp;database:</string>
            </property>
@@ -454,6 +604,9 @@
                <italic>true</italic>
               </font>
              </property>
+             <property name="styleSheet">
+              <string notr="true">color:#444 ;</string>
+             </property>
              <property name="text">
               <string>Put the database in the same directory as this program, and it will be loaded automatically, or add a &quot;--db ...&quot; parameter to the command-line arguments.</string>
              </property>
@@ -507,6 +660,7 @@
   <tabstop>btn_cancel_analyze</tabstop>
   <tabstop>le_load_db_fname</tabstop>
   <tabstop>btn_load_db_fname</tabstop>
+  <tabstop>btn_load_db</tabstop>
  </tabstops>
  <resources/>
  <connections/>
