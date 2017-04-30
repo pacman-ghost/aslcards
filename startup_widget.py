@@ -41,6 +41,8 @@ class AnalyzeThread( QThread ) :
                 on_error = self.on_error ,
             )
             cards = self.parser.parse( self.cards_dir )
+            if not cards :
+                raise RuntimeError( "No cards were found." )
             db.open_database( self.db_fname , True )
             db.add_cards( cards )
         except Exception as ex :
