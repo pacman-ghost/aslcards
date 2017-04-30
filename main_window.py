@@ -53,6 +53,7 @@ class MainWindow( QMainWindow ) :
         # initialize the window
         self.setWindowTitle( APP_NAME )
         self.setWindowIcon( QIcon("resources/app.ico") )
+        self.setMinimumSize( 600 , 400 )
         # initialize the menu
         menu_bar = self.menuBar()
         file_menu = menu_bar.addMenu( "&File" )
