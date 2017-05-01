@@ -3,9 +3,11 @@ import os
 from PyQt5 import uic
 from PyQt5.QtCore import Qt , pyqtSignal
 from PyQt5.QtWidgets import QWidget , QListWidgetItem
+from PyQt5.QtGui import QIcon
 
 import asl_cards.db as db
 from asl_cards.db import AslCard
+from asl_cards import natinfo
 from constants import *
 import globals
 
@@ -25,8 +27,12 @@ class AddCardWidget( QWidget ) :
         uic.loadUi( os.path.join(globals.base_dir,"ui/add_card_widget.ui") , self )
         self.lb_cards.setSortingEnabled( True )
         # load the widget
-        for nationality in globals.cards :
-            self.cbo_nationality.addItem( nationality )
+        for nat in globals.cards :
+            fname = natinfo.get_flag( nat )
+            if fname :
+                self.cbo_nationality.addItem( QIcon(fname) , nat )
+            else :
+                self.cbo_nationality.addItem( nat )
         # connect our handlers
         self.cbo_nationality.currentIndexChanged[str].connect( self.on_nationality_changed )
         self.lb_cards.itemDoubleClicked.connect( self.on_card_doubleclicked )
