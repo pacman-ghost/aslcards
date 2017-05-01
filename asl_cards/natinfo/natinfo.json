@@ -1,0 +1,81 @@
+{
+
+"allied-minor": {
+} ,
+
+"american": {
+} ,
+
+"axis-minor": {
+} ,
+
+"belgian": {
+    "flag": "allied-minor.png"
+} ,
+
+"british": {
+} ,
+
+"bulgarian": {
+    "flag": "axis-minor.png"
+} ,
+
+"chinese": {
+} ,
+
+"croatian": {
+    "flag": "axis-minor.png"
+} ,
+
+"danish": {
+    "flag": "axis-minor.png"
+} ,
+
+"dutch": {
+    "flag": "allied-minor.png"
+} ,
+
+"finnish": {
+    "flag": "axis-minor.png"
+} ,
+
+"french": {
+} ,
+
+"german": {
+} ,
+
+"greek": {
+    "flag": "allied-minor.png"
+} ,
+
+"hungarian": {
+    "flag": "axis-minor.png"
+} ,
+
+"italian": {
+} ,
+
+"japanese": {
+} ,
+
+"polish": {
+    "flag": "allied-minor.png"
+} ,
+
+"romanian": {
+    "flag": "axis-minor.png"
+} ,
+
+"russian": {
+} ,
+
+"slovakian": {
+    "flag": "axis-minor.png"
+} ,
+
+"yugoslav": {
+    "flag": "allied-minor.png"
+}
+
+}

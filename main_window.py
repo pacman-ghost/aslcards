@@ -7,6 +7,7 @@ from PyQt5.QtWidgets import QMessageBox , QAction
 from PyQt5.QtGui import QPainter , QPixmap , QIcon , QBrush
 
 import asl_cards.db as db
+from asl_cards import natinfo
 from constants import *
 import globals
 from add_card_widget import AddCardWidget
@@ -179,7 +180,11 @@ class MainWindow( QMainWindow ) :
         index = self._find_add_card_tab()
         assert index is not None
         self.tab_widget.removeTab( index )
-        widget = self.tab_widget.insertTab( index , AslCardWidget(card) , card.name )
+        fname = natinfo.get_flag( card.nationality )
+        if fname :
+            widget = self.tab_widget.insertTab( index , AslCardWidget(card) , QIcon(fname) , card.name )
+        else :
+            widget = self.tab_widget.insertTab( index , AslCardWidget(card) , card.name )
         self.tab_widget.setCurrentIndex( index )
         self._update_ui()
     def on_add_card_cancelled( self ) :

@@ -1,0 +1,20 @@
+{
+    "german": {
+        "_comment_": "this nationality has no flag"
+    } ,
+
+    "russian": {
+        "flag": "_missing-file_"
+    } ,
+
+    "american" :{
+        "_comment_": "this nationality has a default flag"
+    } ,
+
+    "japanese" :{
+        "flag": "japanese-flag.gif"
+    } ,
+
+    "allied-minor": {
+    }
+}

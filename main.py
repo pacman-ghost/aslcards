@@ -7,6 +7,7 @@ import getopt
 from PyQt5.QtCore import QSettings , QDir
 from PyQt5.QtWidgets import QApplication
 
+from asl_cards import natinfo
 from constants import *
 import globals
 
@@ -52,6 +53,13 @@ def do_main( args ) :
     globals.app_settings = QSettings( settings_fname , QSettings.IniFormat )
     fname = os.path.join( os.path.split(settings_fname)[0] , "debug.ini" )
     globals.debug_settings = QSettings( fname , QSettings.IniFormat )
+
+    # initialize
+    dname = os.path.join( globals.base_dir , "natinfo" )
+    if not os.path.isdir( dname ) :
+        # nb: for a dev environment (or you can create a symlink natinfo -> asl_cards/natinfo)
+        dname = os.path.join( globals.base_dir , "asl_cards/natinfo" )
+    natinfo.load( dname )
 
     # do main processing
     app = QApplication( sys.argv )
