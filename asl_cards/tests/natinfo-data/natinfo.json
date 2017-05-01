@@ -1,6 +1,7 @@
 {
     "german": {
-        "_comment_": "this nationality has no flag"
+        "_comment_": "this nationality has no flag" ,
+        "accelerator": "g"
     } ,
 
     "russian": {
@@ -8,7 +9,13 @@
     } ,
 
     "american" :{
-        "_comment_": "this nationality has a default flag"
+        "_comment_": "this nationality has a default flag" ,
+        "accelerator": "a"
+    } ,
+
+    "australian" :{
+        "_comment_": "this nationality has the same accelerator as the americans" ,
+        "accelerator": "A"
     } ,
 
     "japanese" :{

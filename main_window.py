@@ -73,15 +73,51 @@ class MainWindow( QMainWindow ) :
         action.setStatusTip( "Close the program." )
         action.triggered.connect( self.close )
         file_menu.addAction( action )
-        self.tab_widget = None
-        self._update_ui()
+        # initialize the menu
+        self.view_menu = menu_bar.addMenu( "&View" )
+        self.view_menu.aboutToShow.connect( self.on_about_to_show_view_menu )
         # load the window settings
         self.resize( globals.app_settings.value( MAINWINDOW_SIZE , QSize(500,300) ) )
         self.move( globals.app_settings.value( MAINWINDOW_POSITION , QPoint(200,200) ) )
         # show the startup form
+        self.tab_widget = None
         self.setCentralWidget(
             StartupWidget( db_fname , parent=self )
         )
+        self._update_ui()
+
+    def on_about_to_show_view_menu( self ) :
+        # figure out what nationalities are currently open
+        nats = []
+        for i in range(0,self.tab_widget.count()) :
+            widget = self.tab_widget.widget( i )
+            if type(widget) is not AslCardWidget : continue
+            card = widget.card
+            if card.nationality not in nats :
+                nats.append( card.nationality )
+        # rebuild the View menu
+        def cycle( nat ) :
+            # cycle to the nationality's next card
+            index = start_index = self.tab_widget.currentIndex()
+            while True :
+                index = (index + 1) % self.tab_widget.count()
+                if index == start_index :
+                    break
+                card = self.tab_widget.widget( index ).card
+                if card.nationality == nat :
+                    self.tab_widget.setCurrentIndex( index )
+                    break
+        self.view_menu.clear()
+        for nat in nats :
+            action = QAction( "Next {} card".format(nat) , self )
+            fname = natinfo.get_flag( nat )
+            if fname :
+                action.setIcon( QIcon(fname) )
+            accel = natinfo.get_accel_for_nat( nat )
+            if accel :
+                action.setShortcut( "Ctrl+{}".format( accel ) )
+            action.triggered.connect( lambda qthack,nat=nat: cycle(nat) )
+            self.view_menu.addAction( action )
 
     def start_main_app( self , db_fname ) :
         """Start the main app."""
