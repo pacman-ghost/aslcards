@@ -100,8 +100,8 @@ class MainWindow( QMainWindow ) :
                 index = (index + 1) % self.tab_widget.count()
                 if index == start_index :
                     break
-                card = self.tab_widget.widget( index ).card
-                if card.nationality == nat :
+                widget = self.tab_widget.widget( index )
+                if type(widget) is AslCardWidget and widget.card.nationality == nat :
                     self.tab_widget.setCurrentIndex( index )
                     break
         self.view_menu.clear()
