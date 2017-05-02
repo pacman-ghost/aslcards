@@ -16,6 +16,9 @@ import globals
 class AddCardWidget( QWidget ) :
     """Allow the user to select an ASL card, based on nationality & card type."""
 
+    last_nationality = -1 # nb: the last nationality selected
+    last_card_type = db.TAGTYPE_VEHICLE # nb: the last card type selected
+
     # define our signals
     accepted_signal = pyqtSignal( AslCard , name="accepted" )
     cancelled_signal = pyqtSignal( name="cancelled" )
@@ -42,8 +45,11 @@ class AddCardWidget( QWidget ) :
         for rb in [self.rb_vehicles,self.rb_ordnance] :
             rb.clicked.connect( self.on_card_type_changed )
         # select the initial nationality (this will load the rest of the widget)
-        self.cbo_nationality.setCurrentIndex( 0 )
-        self.on_nationality_changed( self.cbo_nationality.itemText(0) )
+        if AddCardWidget.last_nationality >= 0 :
+            self.cbo_nationality.setCurrentIndex( AddCardWidget.last_nationality )
+        else :
+            self.cbo_nationality.setCurrentIndex( 0 )
+        self.on_nationality_changed( self.cbo_nationality.currentText() )
 
     def _reload_cards( self , focus ) :
         """Reload the available cards."""
@@ -59,7 +65,6 @@ class AddCardWidget( QWidget ) :
         cards = globals.cards[ self.cbo_nationality.currentText() ]
         cards = cards.get( card_type )
         if cards is None :
-            assert False
             return
         # prepare for filtering
         def filter_val( str ) :
@@ -84,6 +89,8 @@ class AddCardWidget( QWidget ) :
         item = self.lb_cards.currentItem()
         card = item.data(Qt.UserRole) if item else None
         self.accepted_signal.emit( card )
+        AddCardWidget.last_nationality = self.cbo_nationality.currentIndex()
+        AddCardWidget.last_card_type = db.TAGTYPE_VEHICLE if self.rb_vehicles.isChecked() else db.TAGTYPE_ORDNANCE
 
     def on_cancel( self ) :
         """Cancel the widget."""
@@ -95,19 +102,19 @@ class AddCardWidget( QWidget ) :
         cards = globals.cards[ val ]
         self.lb_cards.clear()
         # update the vehicle/ordnance radio boxes
-        if self.rb_vehicles.isChecked() :
-            curr_rb = self.rb_vehicles
-        elif self.rb_ordnance.isChecked() :
-            curr_rb = self.rb_ordnance
-        else :
-            curr_rb = None
         self.rb_vehicles.setEnabled( db.TAGTYPE_VEHICLE in cards )
         self.rb_ordnance.setEnabled( db.TAGTYPE_ORDNANCE in cards )
-        if curr_rb is None or not curr_rb.isEnabled() :
-            for rb in [self.rb_vehicles,self.rb_ordnance] :
-                if rb.isEnabled() :
-                    rb.setChecked( True )
-                    break
+        if self.rb_vehicles.isChecked() :
+            if not self.rb_vehicles.isEnabled() :
+                self.rb_ordnance.setChecked( True )
+        elif self.rb_ordnance.isChecked() :
+            if not self.rb_ordnance.isEnabled() :
+                self.rb_vehicles.setChecked( True )
+        else :
+            if AddCardWidget.last_card_type == db.TAGTYPE_VEHICLE and self.rb_vehicles.isEnabled() :
+                self.rb_vehicles.setChecked( True )
+            elif self.rb_ordnance.isEnabled() :
+                self.rb_ordnance.setChecked( True )
         # reload the cards
         self.le_filter.setText( "" )
         self._reload_cards( True )
