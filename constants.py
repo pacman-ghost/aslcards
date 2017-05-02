@@ -5,7 +5,6 @@ APP_VERSION = "v0.1"
 APP_DESCRIPTION = "ASL Cards viewer."
 
 # settings file
-MAINWINDOW_POSITION = "MainWindow/position"
-MAINWINDOW_SIZE = "MainWindow/size"
+MAINWINDOW_GEOMETRY = "MainWindow/geometry"
 #
 CONFIRM_EXIT = "Settings/ConfirmExit"

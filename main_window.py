@@ -73,9 +73,12 @@ class MainWindow( QMainWindow ) :
         action.setStatusTip( "Close the program." )
         action.triggered.connect( self.close )
         file_menu.addAction( action )
-        # load the window settings
-        self.resize( globals.app_settings.value( MAINWINDOW_SIZE , QSize(500,300) ) )
-        self.move( globals.app_settings.value( MAINWINDOW_POSITION , QPoint(200,200) ) )
+        # restore the window geometry
+        buf = globals.app_settings.value( MAINWINDOW_GEOMETRY )
+        if buf :
+            self.restoreGeometry( buf )
+        else :
+            self.resize( 1 , 1 ) # nb: the layout manager will set the correct size
         # show the startup form
         self.tab_widget = None
         self.setCentralWidget(
@@ -184,9 +187,7 @@ class MainWindow( QMainWindow ) :
                 if rc != QMessageBox.Ok :
                     evt.ignore()
         # save the window settings
-        # FIXME! handle fullscreen
-        globals.app_settings.setValue( MAINWINDOW_POSITION ,  self.pos() )
-        globals.app_settings.setValue( MAINWINDOW_SIZE ,  self.size() )
+        globals.app_settings.setValue( MAINWINDOW_GEOMETRY , self.saveGeometry() )
 
     def keyPressEvent( self , evt ) :
         """Handle key-presses."""
