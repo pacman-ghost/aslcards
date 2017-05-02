@@ -36,6 +36,7 @@ class AddCardWidget( QWidget ) :
         # connect our handlers
         self.cbo_nationality.currentIndexChanged[str].connect( self.on_nationality_changed )
         self.lb_cards.itemDoubleClicked.connect( self.on_card_doubleclicked )
+        self.le_filter.textChanged.connect( self.on_filter_textChanged )
         self.ok_button.clicked.connect( self.on_ok )
         self.cancel_button.clicked.connect( self.on_cancel )
         for rb in [self.rb_vehicles,self.rb_ordnance] :
@@ -43,6 +44,40 @@ class AddCardWidget( QWidget ) :
         # select the initial nationality (this will load the rest of the widget)
         self.cbo_nationality.setCurrentIndex( 0 )
         self.on_nationality_changed( self.cbo_nationality.itemText(0) )
+
+    def _reload_cards( self , focus ) :
+        """Reload the available cards."""
+        # initialize
+        self.lb_cards.clear()
+        # figure out what type of cards to show
+        if self.rb_vehicles.isChecked() :
+            card_type = db.TAGTYPE_VEHICLE
+        elif self.rb_ordnance.isChecked() :
+            card_type = db.TAGTYPE_ORDNANCE
+        else :
+            return
+        cards = globals.cards[ self.cbo_nationality.currentText() ]
+        cards = cards.get( card_type )
+        if cards is None :
+            assert False
+            return
+        # prepare for filtering
+        def filter_val( str ) :
+            return str.replace(" ","").lower()
+        filter_text = filter_val( self.le_filter.text() )
+        # reload the available cards
+        for card in cards :
+            if filter_text and filter_val(card.name).find( filter_text ) < 0 :
+                continue
+            item = QListWidgetItem( card.name )
+            item.setData( Qt.UserRole , card )
+            self.lb_cards.addItem( item )
+        self.lbl_cards.setText(
+            "<html><b>Cards:</b>{}</html>".format( " <small><i>(filtered)</i></small>" if filter_text else "" )
+        )
+        self.lb_cards.setCurrentRow( 0 )
+        if focus :
+            self.lb_cards.setFocus()
 
     def on_ok( self ) :
         """Accept the currently selected card."""
@@ -74,30 +109,17 @@ class AddCardWidget( QWidget ) :
                     rb.setChecked( True )
                     break
         # reload the cards
-        self.on_card_type_changed()
+        self.le_filter.setText( "" )
+        self._reload_cards( True )
 
     def on_card_type_changed( self ) :
         """Update the widget when the active card type is changed."""
-        self.lb_cards.clear()
-        # figure out what type of cards to show
-        if self.rb_vehicles.isChecked() :
-            card_type = db.TAGTYPE_VEHICLE
-        elif self.rb_ordnance.isChecked() :
-            card_type = db.TAGTYPE_ORDNANCE
-        else :
-            return
-        # reload the available cards
-        cards = globals.cards[ self.cbo_nationality.currentText() ]
-        cards = cards.get( card_type )
-        if cards is None :
-            assert False
-            return
-        for card in cards :
-            item = QListWidgetItem( card.name )
-            item.setData( Qt.UserRole , card )
-            self.lb_cards.addItem( item )
-        self.lb_cards.setCurrentRow( 0 )
-        self.lb_cards.setFocus()
+        self.le_filter.setText( "" )
+        self._reload_cards( True )
+
+    def on_filter_textChanged( self , val ) :
+        """Update the widget when the filter text is changed."""
+        self._reload_cards( False )
 
     def on_card_doubleclicked( self , item ) :
         # handle the event

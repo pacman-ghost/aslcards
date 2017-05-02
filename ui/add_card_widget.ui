@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>450</width>
-    <height>300</height>
+    <width>440</width>
+    <height>356</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -43,7 +43,7 @@
      <widget class="QRadioButton" name="rb_ordnance">
       <property name="geometry">
        <rect>
-        <x>290</x>
+        <x>300</x>
         <y>0</y>
         <width>89</width>
         <height>26</height>
@@ -56,7 +56,7 @@
      <widget class="QComboBox" name="cbo_nationality">
       <property name="geometry">
        <rect>
-        <x>80</x>
+        <x>90</x>
         <y>0</y>
         <width>120</width>
         <height>28</height>
@@ -86,9 +86,15 @@
        <rect>
         <x>0</x>
         <y>-1</y>
-        <width>75</width>
+        <width>81</width>
         <height>31</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="text">
        <string>&amp;Nationality:</string>
@@ -100,21 +106,16 @@
      <widget class="QRadioButton" name="rb_vehicles">
       <property name="geometry">
        <rect>
-        <x>210</x>
+        <x>220</x>
         <y>0</y>
         <width>79</width>
         <height>26</height>
        </rect>
       </property>
       <property name="text">
-       <string>&amp;Vehicles</string>
+       <string>Ve&amp;hicles</string>
       </property>
      </widget>
-     <zorder>label</zorder>
-     <zorder>rb_ordnance</zorder>
-     <zorder>cbo_nationality</zorder>
-     <zorder>label</zorder>
-     <zorder>rb_vehicles</zorder>
     </widget>
    </item>
    <item>
@@ -131,28 +132,90 @@
        <height>20</height>
       </size>
      </property>
-     <widget class="QLabel" name="label_2">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>51</width>
-        <height>19</height>
-       </rect>
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <property name="spacing">
+       <number>0</number>
       </property>
-      <property name="maximumSize">
-       <size>
-        <width>16777215</width>
-        <height>20</height>
-       </size>
+      <property name="leftMargin">
+       <number>0</number>
       </property>
-      <property name="text">
-       <string>&amp;Cards:</string>
+      <property name="topMargin">
+       <number>0</number>
       </property>
-      <property name="buddy">
-       <cstring>lb_cards</cstring>
+      <property name="rightMargin">
+       <number>0</number>
       </property>
-     </widget>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QLabel" name="lbl_cards">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>&amp;Cards:</string>
+        </property>
+        <property name="buddy">
+         <cstring>lb_cards</cstring>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_3">
+        <property name="font">
+         <font>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Fi&amp;lter:</string>
+        </property>
+        <property name="buddy">
+         <cstring>le_filter</cstring>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="le_filter">
+        <property name="minimumSize">
+         <size>
+          <width>100</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>100</width>
+          <height>16777215</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
    <item>
@@ -237,7 +300,13 @@
   </layout>
  </widget>
  <tabstops>
+  <tabstop>cbo_nationality</tabstop>
+  <tabstop>rb_vehicles</tabstop>
+  <tabstop>rb_ordnance</tabstop>
+  <tabstop>le_filter</tabstop>
   <tabstop>lb_cards</tabstop>
+  <tabstop>cancel_button</tabstop>
+  <tabstop>ok_button</tabstop>
  </tabstops>
  <resources/>
  <connections/>

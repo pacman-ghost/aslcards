@@ -210,7 +210,7 @@ class MainWindow( QMainWindow ) :
         )
         self.tab_widget.setCurrentIndex( index )
         self._update_ui()
-        widget.setFocus() # FIXME! s.b. to first child control
+        widget.lb_cards.setFocus()
     def on_add_card_accepted( self , card ) :
         """Handle the user's card selection."""
         index = self._find_add_card_tab()
