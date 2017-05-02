@@ -90,8 +90,6 @@ def open_database( fname , create ) :
 
 def add_cards( cards ) :
     """Build the database from the specified cards."""
-    # clear the database
-    db_session.query(AslCard).delete()
     # add the cards
     for c in cards :
         db_session.add( c )

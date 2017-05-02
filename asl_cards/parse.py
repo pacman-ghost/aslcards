@@ -77,11 +77,12 @@ def _run_ghostscript( args ) :
 
 class PdfParser:
 
-    def __init__( self , index_dir , progress=None , progress2=None , on_ask=None , on_error=None ) :
+    def __init__( self , index_dir , progress=None , progress2=None , on_file_completed=None , on_ask=None , on_error=None ) :
         # initialize
         self.index_dir = index_dir
         self.progress = progress # nb: for tracking file progress
         self.progress2 = progress2 # nb: for tracking page progress within a file
+        self.on_file_completed = on_file_completed # nb: called at the end of each file
         self.on_ask = on_ask # nb: for asking the user something during processing
         self.on_error = on_error # nb: for showing the user an error message
         self.cancelling = False
@@ -116,6 +117,8 @@ class PdfParser:
                     )
                 )
                 continue
+            if self.on_file_completed :
+                self.on_file_completed( fname , file_cards )
             if file_cards :
                 cards.extend( file_cards )
         self._progress( 1.0 , "Done." )

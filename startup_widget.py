@@ -33,19 +33,27 @@ class AnalyzeThread( QThread ) :
             # initialize
             if os.path.isfile( self.db_fname ) :
                 os.unlink( self.db_fname )
+            db.open_database( self.db_fname , True )
             # parse the files
+            total_cards = 0
+            def on_file_completed( fname , cards ) :
+                # save the extracted cards
+                db.add_cards( cards )
+                nonlocal total_cards
+                total_cards += len(cards)
+                del cards[:]
             self.parser = PdfParser(
                 os.path.join( globals.base_dir , "index" ) ,
                 progress = lambda pval,msg: self.progress_signal.emit( -1 if pval is None else pval , msg ) ,
                 progress2 = lambda pval: self.progress2_signal.emit( pval ) ,
+                on_file_completed = on_file_completed ,
                 on_ask = self.on_ask ,
                 on_error = self.on_error ,
             )
             cards = self.parser.parse( self.cards_dir , image_res=self.image_res )
-            if not cards :
+            assert len(cards) == 0 # nb: on_file_completed() del'ed everything
+            if total_cards <= 0 :
                 raise RuntimeError( "No cards were found." )
-            db.open_database( self.db_fname , True )
-            db.add_cards( cards )
         except Exception as ex :
             # notify slots that something went wrong
             if globals.debug_settings.value("Debug/LogAnalyzeExceptions",type=bool) :
