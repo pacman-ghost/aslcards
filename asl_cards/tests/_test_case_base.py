@@ -21,10 +21,7 @@ class TestCaseBase( unittest.TestCase ) :
             None ,
             #progress = lambda _,msg: print( msg , file=sys.stderr , flush=True )
         )
-        cards = pdf_parser.parse( fname2 , images=False )
-        if False :
-            for c in cards :
-                print(c)
+        cards = pdf_parser.parse( fname2 , image_res=None )
         # check the results
         if len(cards) != len(expected_cards) :
             raise RuntimeError( "{}: got {} cards, expected {}.".format( fname , len(cards) , len(expected_cards) ) )

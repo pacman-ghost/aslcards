@@ -2,6 +2,8 @@ import sys
 import os
 import re
 import itertools
+import time
+import datetime
 import tempfile
 import locale
 from collections import namedtuple
@@ -84,7 +86,7 @@ class PdfParser:
         self.on_error = on_error # nb: for showing the user an error message
         self.cancelling = False
 
-    def parse( self , target , max_pages=-1 , images=True ) :
+    def parse( self , target , max_pages=-1 , image_res=None ) :
         """Extract the cards from a PDF file."""
         # locate the files we're going to parse
         if os.path.isfile( target ) :
@@ -97,10 +99,11 @@ class PdfParser:
             ]
         # parse each file
         cards = []
+        start_time = time.time()
         for file_no,fname in enumerate(fnames) :
             if self.cancelling : raise AnalyzeCancelledException()
             try :
-                file_cards = self._do_parse_file( float(file_no)/len(fnames) , fname , max_pages , images )
+                file_cards = self._do_parse_file( float(file_no)/len(fnames) , fname , max_pages , image_res )
             except AnalyzeCancelledException as ex :
                 raise
             except Exception as ex :
@@ -118,9 +121,11 @@ class PdfParser:
         self._progress( 1.0 , "Done." )
         # filter out placeholder cards
         cards = [ c for c in cards if c.nationality != "_unused_" and c.name != "_unused_" ]
+        elapsed_time = int( time.time() - start_time )
+        #print( "Elapsed time: {}".format( datetime.timedelta( seconds=elapsed_time ) ) )
         return cards
 
-    def _do_parse_file( self , pval , fname , max_pages , images ) :
+    def _do_parse_file( self , pval , fname , max_pages , image_res ) :
         cards = []
         # check if we have an index for this file
         # NOTE: We originally tried to get the details of each card by parsing the PDF files but unfortunately,
@@ -184,9 +189,9 @@ class PdfParser:
                     if max_pages > 0 and 1+page_no >= max_pages :
                         break
         # extract the card images
-        if images :
+        if image_res :
             self._progress( pval , "Extracting images from {}...".format( os.path.split(fname)[1] ) )
-            card_images = self._extract_images( fname , max_pages )
+            card_images = self._extract_images( fname , max_pages , image_res )
             if len(cards) != len(card_images) :
                 raise RuntimeError(
                     "Card mismatch in {}: found {} cards, {} card images.".format(
@@ -248,17 +253,16 @@ class PdfParser:
             page_pos = page_pos ,
         )
 
-    def _extract_images( self , fname , max_pages ) :
+    def _extract_images( self , fname , max_pages , image_res ) :
         """Extract card images from a file."""
         # clean up any leftover extracted images from a previous run
         # NOTE: It's important we do this, otherwise we might think they're part of this run.
         for f in _find_extracted_image_files() :
             os.unlink( f )
         # extract each page from the PDF as an image
-        resolution = 300 # pixels/inch
         args = [
             "_ignored_" , "-dQUIET" , "-dSAFER" , "-dNOPAUSE" ,
-            "-sDEVICE=png16m" , "-r"+str(resolution) ,
+            "-sDEVICE=png16m" , "-r"+str(image_res) ,
             "-sOutputFile="+_EXTRACTED_IMAGES_FILENAME_TEMPLATE
         ]
         if max_pages > 0 :
@@ -277,7 +281,7 @@ class PdfParser:
             # extract the cards (by splitting the page in half)
             fname2 = list( os.path.split( fname ) )
             fname2[1] = os.path.splitext( fname2[1] )
-            ypos = img_height * 48 / 100
+            ypos = img_height * 48/100 # nb: the cards are not perfectly aligned in the page
             buf1 , size1 = self._crop_image(
                 img , (0,0,img_width,ypos) ,
                 os.path.join( fname2[0] , fname2[1][0]+"a"+fname2[1][1] )
@@ -286,8 +290,11 @@ class PdfParser:
                 img , (0,ypos+1,img_width,img_height) ,
                 os.path.join( fname2[0] , fname2[1][0]+"b"+fname2[1][1] )
             )
-            # check if this is the last page, and it has just 1 card on it
-            if page_no == len(image_fnames)-1 and size1[1] < 1000 and size2[1] < 1000 :
+            if not buf1 and not buf2 :
+                continue # nb: blank page
+            # check if this is the last page, and it has just 1 card (centred) on it (e.g. ItalianOrdnance.pdf)
+            cutoff = img_height / 4
+            if page_no == len(image_fnames)-1 and size1[1] < cutoff and size2[1] < cutoff :
                 # yup - extract it
                 buf , _ = self._crop_image(
                     img , (0,0,img_width,img_height) ,
@@ -295,9 +302,11 @@ class PdfParser:
                 )
                 card_images.append( buf )
             else :
-                # nope - save the extracted cards
-                card_images.append( buf1 )
-                card_images.append( buf2 )
+                # nope - save the extracted card(s)
+                if buf1 :
+                    card_images.append( buf1 )
+                if buf2 :
+                    card_images.append( buf2 )
             # clean up
             os.unlink( fname )
         return card_images
@@ -309,16 +318,19 @@ class PdfParser:
         bgd_col = img.getpixel( (0,0) )
         bgd_img = Image.new( img.mode , img.size , bgd_col )
         diff = ImageChops.difference( rgn , bgd_img )
-        #diff = ImageChops.add(diff, diff, 2.0, -100)
+        diff = ImageChops.add(diff, diff, 2.0, -100)
         bbox = diff.getbbox()
         if bbox :
+            # save the cropped image
             rgn = rgn.crop( bbox )
-        # save the cropped image
-        rgn.save( fname )
-        with open( fname , "rb" ) as fp :
-            buf = fp.read()
-        os.unlink( fname )
-        return buf , rgn.size
+            rgn.save( fname )
+            with open( fname , "rb" ) as fp :
+                buf = fp.read()
+            os.unlink( fname )
+            return buf , rgn.size
+        else :
+            # nb: we get here if the entire region is blank (e.g. the bottom half of a single-card page)
+            return None , None
 
     def _progress( self , pval , msg ) :
         """Call the progress callback."""

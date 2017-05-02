@@ -20,10 +20,11 @@ class AnalyzeThread( QThread ) :
     progress2_signal = pyqtSignal( float , name="progress2" )
     completed_signal = pyqtSignal( str , name="completed" )
 
-    def __init__( self , cards_dir , db_fname ) :
+    def __init__( self , cards_dir , image_res , db_fname ) :
         # initialize
-        super(AnalyzeThread,self).__init__()
+        super().__init__()
         self.cards_dir = cards_dir
+        self.image_res = image_res
         self.db_fname = db_fname
 
     def run( self ) :
@@ -40,7 +41,7 @@ class AnalyzeThread( QThread ) :
                 on_ask = self.on_ask ,
                 on_error = self.on_error ,
             )
-            cards = self.parser.parse( self.cards_dir )
+            cards = self.parser.parse( self.cards_dir , image_res=self.image_res )
             if not cards :
                 raise RuntimeError( "No cards were found." )
             db.open_database( self.db_fname , True )
@@ -137,6 +138,10 @@ class StartupWidget( QWidget ) :
         )
         self.btn_load_db.setText( " " + self.btn_load_db.text() )
         # load the widget
+        self.cbo_resolution.addItem( "150 dpi" )
+        self.cbo_resolution.addItem( "300 dpi" )
+        self.cbo_resolution.addItem( "600 dpi" )
+        self.cbo_resolution.setCurrentIndex( 1 )
         if os.path.isfile( db_fname ) :
             self.le_load_db_fname.setText( db_fname )
         else :
@@ -187,6 +192,8 @@ class StartupWidget( QWidget ) :
             MainWindow.show_error_msg( "Please choose where you want to save the results." )
             self.le_save_db_fname.setFocus()
             return
+        # unload other settings
+        image_res = int( self.cbo_resolution.currentText().split()[ 0 ] )
         # run the analysis (in a worker thread)
         self.frm_open_db.hide()
         self.frm_analyze_progress.show()
@@ -194,7 +201,7 @@ class StartupWidget( QWidget ) :
         self._update_analyze_ui( False )
         self.btn_cancel_analyze.setEnabled( True )
         self.btn_cancel_analyze.clicked.connect( self.on_cancel_analyze )
-        self.analyze_thread = AnalyzeThread( cards_dir , fname )
+        self.analyze_thread = AnalyzeThread( cards_dir , image_res , fname )
         self.analyze_thread.progress_signal.connect( self.on_analyze_progress )
         self.analyze_thread.progress2_signal.connect( self.on_analyze_progress2 )
         self.analyze_thread.completed_signal.connect( self.on_analyze_completed )
@@ -252,6 +259,7 @@ class StartupWidget( QWidget ) :
     def _update_analyze_ui( self , enable ) :
         # update the UI
         widgets = [ self.lbl_cards_dir , self.le_cards_dir, self.btn_cards_dir ]
+        widgets.extend( [ self.lbl_resolution , self.cbo_resolution , self.lbl_resolution_hint ] )
         widgets.extend( [ self.lbl_save_db_fname , self.le_save_db_fname , self.btn_save_db_fname ] )
         widgets.append( self.btn_analyze )
         for w in widgets :
