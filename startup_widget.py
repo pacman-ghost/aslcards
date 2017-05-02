@@ -289,7 +289,7 @@ class StartupWidget( QWidget ) :
         """Load the database and start the main application."""
         fname = self.le_load_db_fname.text().strip()
         if not fname :
-            MainWindow.show_error_msg( "Please choose a database to load." )
+            MainWindow.show_error_msg( "Please choose a database to open." )
             self.le_load_db_fname.setFocus()
             return
         if not os.path.isfile( fname ) :

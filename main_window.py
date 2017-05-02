@@ -170,6 +170,7 @@ class MainWindow( QMainWindow ) :
         if type(widget) is StartupWidget :
             # don't allow this if we are analyzing files
             if widget.analyze_thread :
+                MainWindow.show_info_msg( "Please cancel the analysis first." )
                 QApplication.beep()
                 evt.ignore()
                 return
