@@ -73,9 +73,6 @@ class MainWindow( QMainWindow ) :
         action.setStatusTip( "Close the program." )
         action.triggered.connect( self.close )
         file_menu.addAction( action )
-        # initialize the menu
-        self.view_menu = menu_bar.addMenu( "&View" )
-        self.view_menu.aboutToShow.connect( self.on_about_to_show_view_menu )
         # load the window settings
         self.resize( globals.app_settings.value( MAINWINDOW_SIZE , QSize(500,300) ) )
         self.move( globals.app_settings.value( MAINWINDOW_POSITION , QPoint(200,200) ) )
@@ -130,6 +127,9 @@ class MainWindow( QMainWindow ) :
         # open the database
         db.open_database( db_fname , False )
         globals.cards = db.load_cards()
+        # show the View menu
+        self.view_menu = self.menuBar().addMenu( "&View" )
+        self.view_menu.aboutToShow.connect( self.on_about_to_show_view_menu )
         # ask the user to add the first card
         self.add_card_action.setEnabled( True )
         self.on_add_card()
