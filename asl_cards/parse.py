@@ -105,6 +105,8 @@ class PdfParser:
             if self.cancelling : raise AnalyzeCancelledException()
             try :
                 file_cards = self._do_parse_file( float(file_no)/len(fnames) , fname , max_pages , image_res )
+                if file_cards is None :
+                    continue
             except AnalyzeCancelledException as ex :
                 raise
             except Exception as ex :
