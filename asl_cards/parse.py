@@ -110,6 +110,10 @@ class PdfParser:
             except AnalyzeCancelledException as ex :
                 raise
             except Exception as ex :
+                if str(ex).lower().find( "can not find ghostscript dll" ) >= 0 :
+                    # NOTE: We get a RuntimeError if Ghostscript is not installed :-/
+                    # We bail, since there's no point trying to parse any more files.
+                    raise
                 # notify the caller of the error
                 if not self.on_error :
                     raise
