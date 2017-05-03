@@ -30,7 +30,8 @@ class AddCardWidget( QWidget ) :
         uic.loadUi( os.path.join(globals.base_dir,"ui/add_card_widget.ui") , self )
         self.lb_cards.setSortingEnabled( True )
         # load the widget
-        for nat in globals.cards :
+        sorted_nats = sorted( globals.cards.keys() , key=lambda n: n.lower() )
+        for nat in sorted_nats :
             fname = natinfo.get_flag( nat )
             if fname :
                 self.cbo_nationality.addItem( QIcon(fname) , nat )
