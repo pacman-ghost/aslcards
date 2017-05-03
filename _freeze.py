@@ -29,7 +29,7 @@ extra_files.extend( get_extra_files( "index/*.txt" ) )
 extra_files.extend( get_extra_files( "resources/*.ico" ) )
 extra_files.extend( get_extra_files( "resources/*.png" ) )
 extra_files.extend( get_extra_files( "ui/*.ui" ) )
-# nb: we need the natinfo directory, but it gets pulled in as part of the asl_cards module.
+extra_files.append( ( "asl_cards/natinfo" , "asl_cards/natinfo" ) )
 if sys.platform == "win32" :
     # workaround a cx-freeze bug (already fixed, but after 5.0.1 was released) :wall: >:-/
     # https://bitbucket.org/anthony_tuininga/cx_freeze/issues/207/sqlite3dll-not-shipped
@@ -41,11 +41,12 @@ build_options = {
 }
 
 # freeze the application
+# NOTE: We can't call the Linux binary "asl_cards", since we need a directory of the same name :-/
 # FIXME! set the app icon
 target = Executable(
     "main.py" ,
     base = "Win32GUI" if sys.platform == "win32" else None ,
-    targetName = "asl_cards.exe" if sys.platform == "win32" else "asl_cards" ,
+    targetName = "aslcards.exe" if sys.platform == "win32" else "aslcards" ,
 )
 setup(
     name = APP_NAME ,
