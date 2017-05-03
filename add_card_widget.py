@@ -78,7 +78,7 @@ class AddCardWidget( QWidget ) :
             item.setData( Qt.UserRole , card )
             self.lb_cards.addItem( item )
         self.lbl_cards.setText(
-            "<html><b>Cards:</b>{}</html>".format( " <small><i>(filtered)</i></small>" if filter_text else "" )
+            "<html><b>&Cards:</b>{}</html>".format( " <small><i>(filtered)</i></small>" if filter_text else "" )
         )
         self.lb_cards.setCurrentRow( 0 )
         if focus :

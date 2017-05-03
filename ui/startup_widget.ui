@@ -112,7 +112,7 @@
             <string notr="true">color:#444 ;</string>
            </property>
            <property name="text">
-            <string>&lt;html&gt;This needs &lt;a href=&quot;https://ghostscript.com&quot;&gt;Ghostscript&lt;/a&gt; to be installed.&lt;/html&gt;</string>
+            <string>&lt;html&gt;This needs &lt;a href=&quot;https://ghostscript.com/download/gsdnld.html&quot;&gt;Ghostscript&lt;/a&gt; to be installed.&lt;/html&gt;</string>
            </property>
            <property name="openExternalLinks">
             <bool>true</bool>
