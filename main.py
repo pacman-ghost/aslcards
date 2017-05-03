@@ -55,11 +55,9 @@ def do_main( args ) :
     globals.debug_settings = QSettings( fname , QSettings.IniFormat )
 
     # initialize
-    dname = os.path.join( globals.base_dir , "natinfo" )
-    if not os.path.isdir( dname ) :
-        # nb: for a dev environment (or you can create a symlink natinfo -> asl_cards/natinfo)
-        dname = os.path.join( globals.base_dir , "asl_cards/natinfo" )
-    natinfo.load( dname )
+    natinfo.load(
+        os.path.join( globals.base_dir , "asl_cards/natinfo" )
+    )
 
     # do main processing
     app = QApplication( sys.argv )
