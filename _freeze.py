@@ -42,11 +42,11 @@ build_options = {
 
 # freeze the application
 # NOTE: We can't call the Linux binary "asl_cards", since we need a directory of the same name :-/
-# FIXME! set the app icon
 target = Executable(
     "main.py" ,
     base = "Win32GUI" if sys.platform == "win32" else None ,
     targetName = "aslcards.exe" if sys.platform == "win32" else "aslcards" ,
+    icon = os.path.join( base_dir , "resources/app.ico" ) ,
 )
 setup(
     name = APP_NAME ,
