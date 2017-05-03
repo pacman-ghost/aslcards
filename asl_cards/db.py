@@ -86,6 +86,14 @@ def open_database( fname , create ) :
         # yup - make it so
         DbBase.metadata.create_all( db_engine )
 
+def close_database() :
+    """Close the database"""
+    global db_engine , db_session
+    db_session.close()
+    db_session = None
+    db_engine.dispose()
+    db_engine = None
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 def add_cards( cards ) :

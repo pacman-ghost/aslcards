@@ -63,6 +63,8 @@ class AnalyzeThread( QThread ) :
         else :
             # notify slots that we've finished
             self.completed_signal.emit( "" )
+        finally :
+            db.close_database()
 
     def on_error( self , msg ) :
         """Show the user an error message."""
