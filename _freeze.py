@@ -1,5 +1,8 @@
 #!/usr/bin/env python
-# FIXME: Get py2exe working for Windows builds (since it produces a single EXE).
+
+# NOTE: It would be nice to be able to use py2exe to compile this for Windows (since it produces
+# a single EXE instead of the morass of files cx-freeze generates) but py2exe only works up to
+# Python 3.4, since the byte code format changed after that.
 
 import sys
 import os
@@ -27,6 +30,10 @@ extra_files.extend( get_extra_files( "resources/*.ico" ) )
 extra_files.extend( get_extra_files( "resources/*.png" ) )
 extra_files.extend( get_extra_files( "ui/*.ui" ) )
 # nb: we need the natinfo directory, but it gets pulled in as part of the asl_cards module.
+if sys.platform == "win32" :
+    # workaround a cx-freeze bug (already fixed, but after 5.0.1 was released) :wall: >:-/
+    # https://bitbucket.org/anthony_tuininga/cx_freeze/issues/207/sqlite3dll-not-shipped
+    extra_files.append( os.path.join( sys.base_prefix , "DLLs" , "sqlite3.dll" ) )
 build_options = {
     "packages": [ "os" , "sqlalchemy" ] ,
     "excludes": [ "tkinter" ] ,
