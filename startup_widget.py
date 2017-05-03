@@ -219,6 +219,7 @@ class StartupWidget( QWidget ) :
         """Update the analysis progress in the UI."""
         if pval >= 0 :
             self.pb_files.setValue( int( 100*pval + 0.5 ) )
+        self.pb_files.setStyleSheet( "text-align: center ;" )
         self.pb_files.setFormat( msg )
         self.pb_pages.setValue( 0 )
     def on_analyze_progress2( self , pval ) :
