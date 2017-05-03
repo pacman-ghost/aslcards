@@ -119,13 +119,14 @@ class PdfParser:
                     )
                 )
                 continue
+            # filter out placeholder cards
+            file_cards = [ c for c in file_cards if c.nationality != "_unused_" and c.name != "_unused_" ]
+            # notify the caller we've finished another file
             if self.on_file_completed :
                 self.on_file_completed( fname , file_cards )
             if file_cards :
                 cards.extend( file_cards )
         self._progress( 1.0 , "Done." )
-        # filter out placeholder cards
-        cards = [ c for c in cards if c.nationality != "_unused_" and c.name != "_unused_" ]
         elapsed_time = int( time.time() - start_time )
         #print( "Elapsed time: {}".format( datetime.timedelta( seconds=elapsed_time ) ) )
         return cards
