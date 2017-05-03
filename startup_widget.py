@@ -65,6 +65,10 @@ class AnalyzeThread( QThread ) :
             self.completed_signal.emit( "" )
         finally :
             db.close_database()
+            if total_cards <= 0 :
+                # NOTE: If we extracted nothing (e.g. because Ghostscript isn't installed), we delete the database
+                # so that we don't start up next time with an empty database.
+                os.unlink( self.db_fname )
 
     def on_error( self , msg ) :
         """Show the user an error message."""
