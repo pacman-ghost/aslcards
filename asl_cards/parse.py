@@ -15,9 +15,6 @@ from pdfminer.converter import PDFPageAggregator
 from pdfminer.layout import LAParams , LTTextBoxHorizontal
 from pdfminer.pdfpage import PDFPage
 
-import ghostscript
-from PIL import Image , ImageChops
-
 from asl_cards.db import AslCard , AslCardImage
 
 # ---------------------------------------------------------------------
@@ -52,6 +49,9 @@ def _run_ghostscript( args ) :
     This code was adapted from ghostscript's _gsprint.py.
     """
     # allocate a new Ghostscript instance
+    # NOTE: We only import the ghostscript stuff if it's needed (i.e. when we get here), so that people
+    # can run this program without needing Ghostscript to be installed, if they already have a database.
+    import ghostscript
     import ghostscript._gsprint as gsp
     inst = gsp.new_instance()
     # wrap stdin/stdout/stderr with dummy buffers
@@ -277,6 +277,7 @@ class PdfParser:
         _run_ghostscript( args )
         image_fnames = _find_extracted_image_files()
         # extract the cards from each page
+        from PIL import Image
         card_images = []
         for page_no,fname in enumerate(image_fnames) :
             if self.cancelling : raise AnalyzeCancelledException()
@@ -322,6 +323,7 @@ class PdfParser:
         rgn = img.crop( bbox )
         # trim the cropped region
         bgd_col = img.getpixel( (0,0) )
+        from PIL import Image , ImageChops
         bgd_img = Image.new( img.mode , img.size , bgd_col )
         diff = ImageChops.difference( rgn , bgd_img )
         diff = ImageChops.add(diff, diff, 2.0, -100)
