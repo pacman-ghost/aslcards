@@ -40,7 +40,7 @@ cleanup = True
 opts,args = getopt.getopt( sys.argv[1:] , "o:" , ["output=","noclean"] )
 for opt,val in opts :
     if opt in ["-o","--output"] :
-        output_fname = val
+        output_fname = val.strip()
     elif opt in ["--noclean"] :
         cleanup = False
     else :
@@ -57,7 +57,7 @@ for extn,fmt in formats.items() :
         output_fname2 = output_fname[ : -len(extn) ]
         break
 if not output_fmt :
-    raise RuntimeError( "Unknown output format." )
+    raise RuntimeError( "Unknown release archive format: {}".format( os.path.split(output_fname)[1] ) )
 
 # initialize the build options
 build_options = {
