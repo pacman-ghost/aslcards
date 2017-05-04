@@ -2,7 +2,7 @@ import sys
 import os
 
 from PyQt5.QtCore import Qt , QPoint , QSize
-from PyQt5.QtWidgets import QApplication , QMainWindow , QVBoxLayout , QHBoxLayout , QWidget , QTabWidget , QLabel
+from PyQt5.QtWidgets import QApplication , QMainWindow , QVBoxLayout , QHBoxLayout , QWidget , QTabWidget , QLabel , QMenu
 from PyQt5.QtWidgets import QMessageBox , QAction
 from PyQt5.QtGui import QPainter , QPixmap , QIcon , QBrush
 
@@ -74,11 +74,11 @@ class MainWindow( QMainWindow ) :
         action.setStatusTip( "Close the program." )
         action.triggered.connect( self.close )
         file_menu.addAction( action )
-        help_menu = menu_bar.addMenu( "&Help" )
+        self.help_menu = menu_bar.addMenu( "&Help" )
         about_action = QAction( "&About" , self )
         about_action.setStatusTip( "About this program." )
         about_action.triggered.connect( self.on_about )
-        help_menu.addAction( about_action )
+        self.help_menu.addAction( about_action )
         # restore the window geometry
         buf = globals.app_settings.value( MAINWINDOW_GEOMETRY )
         if buf :
@@ -137,7 +137,8 @@ class MainWindow( QMainWindow ) :
         db.open_database( db_fname , False )
         globals.cards = db.load_cards()
         # show the View menu
-        self.view_menu = self.menuBar().addMenu( "&View" )
+        self.view_menu = QMenu( "&View" )
+        self.menuBar().insertMenu( self.help_menu.menuAction() , self.view_menu )
         self.view_menu.aboutToShow.connect( self.on_about_to_show_view_menu )
         # ask the user to add the first card
         self.add_card_action.setEnabled( True )

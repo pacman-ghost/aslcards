@@ -84,7 +84,7 @@
      <widget class="QLabel" name="lbl_avatar">
       <property name="geometry">
        <rect>
-        <x>180</x>
+        <x>183</x>
         <y>25</y>
         <width>21</width>
         <height>21</height>
