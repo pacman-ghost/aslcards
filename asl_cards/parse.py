@@ -89,6 +89,9 @@ class PdfParser:
 
     def parse( self , target , max_pages=-1 , image_res=None ) :
         """Extract the cards from a PDF file."""
+        # FUDGE! The Qt directory browser always returns paths using forward slashes, which confuses Ghostscript :-/
+        if sys.platform == "win32" and target.startswith("//") :
+            target = target.replace( "/" , "\\" )
         # locate the files we're going to parse
         if os.path.isfile( target ) :
             fnames = [ target ]
