@@ -12,6 +12,7 @@ from constants import *
 import globals
 from add_card_widget import AddCardWidget
 from startup_widget import StartupWidget
+from about_widget import AboutWidget
 
 # ---------------------------------------------------------------------
 
@@ -73,6 +74,11 @@ class MainWindow( QMainWindow ) :
         action.setStatusTip( "Close the program." )
         action.triggered.connect( self.close )
         file_menu.addAction( action )
+        help_menu = menu_bar.addMenu( "&Help" )
+        about_action = QAction( "&About" , self )
+        about_action.setStatusTip( "About this program." )
+        about_action.triggered.connect( self.on_about )
+        help_menu.addAction( about_action )
         # restore the window geometry
         buf = globals.app_settings.value( MAINWINDOW_GEOMETRY )
         if buf :
@@ -240,3 +246,7 @@ class MainWindow( QMainWindow ) :
             return
         self.tab_widget.removeTab( index )
         self._update_ui()
+
+    def on_about( self ) :
+        """Show an About box."""
+        AboutWidget( self ).exec_()
