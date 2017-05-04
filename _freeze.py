@@ -66,6 +66,10 @@ build_options = {
     "include_files": get_extra_files() ,
 }
 
+# cx-freeze doesn't work in a virtualenv on Windows :-/
+if sys.platform == "win32" and os.getenv("VIRTUAL_ENV") :
+    raise RuntimeError( "Can't freeze on Windows in a virtualenv." )
+
 # freeze the application
 # NOTE: It would be nice to be able to use py2exe to compile this for Windows (since it produces
 # a single EXE instead of the morass of files cx-freeze generates) but py2exe only works up to
