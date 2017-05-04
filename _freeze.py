@@ -20,7 +20,7 @@ def get_extra_files() :
     def globfiles( fspec ) :
         fnames = glob.glob( fspec )
         return zip( fnames , fnames )
-    extra_files = []
+    extra_files = [ "license.txt" ]
     extra_files.extend( globfiles( "index/*.txt" ) )
     extra_files.extend( globfiles( "resources/*.ico" ) )
     extra_files.extend( globfiles( "resources/*.png" ) )
