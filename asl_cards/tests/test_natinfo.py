@@ -22,8 +22,8 @@ class TestNatInfo( TestCaseBase ) :
     def test_flags( self ) :
         """Test locating the flag image files for each nationality."""
         self.assertIsNone( natinfo.get_flag( "german" ) )
-        self.assertTrue( natinfo.get_flag("american").endswith( "/flags/american.png" ) )
-        self.assertTrue( natinfo.get_flag("japanese").endswith( "/flags/japanese-flag.gif" ) )
+        self.assertTrue( natinfo.get_flag("american").endswith( os.path.join("flags","american.png") ) )
+        self.assertTrue( natinfo.get_flag("japanese").endswith( os.path.join("flags","japanese-flag.gif") ) )
         self.assertIsNone( natinfo.get_flag( "_unknown_" ) )
         self.assertIsNone( natinfo.get_flag( "" ) )
         self.assertIsNone( natinfo.get_flag( None ) )
