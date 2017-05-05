@@ -8,8 +8,8 @@ However, unless you print them out, it's difficult to quickly switch between the
 
 To run from source, you need Python 3, and some requirements:
 ```
-pip install -r requirements.txt
-pip install -r asl_cards/requirements.txt
+pip3 install -r requirements.txt
+pip3 install -r asl_cards/requirements.txt
 python3 main.py
 ```
 
@@ -43,3 +43,6 @@ You need the [VS 2015 Runtime](https://www.microsoft.com/en-us/download/details.
 
 #### Can I change the keyboard shortcuts used to flip between cards?
 Keyboard shortcuts can be used to flip between the cards of commonly-used nationalities e.g. ^G for the Germans, ^R for the Russians. These are defined in <tt>$/asl_cards/natinfo/natinfo.json</tt>, and you can change other nationality-based settings here as well.
+
+#### Can I run this on 32-bit Linux?
+Possibly, but setting up the requirements is tricky. PyQt5, in particular, only offer 64-bit versions for Linux and OS X.
