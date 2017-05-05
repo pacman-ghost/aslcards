@@ -108,7 +108,7 @@
       </sizepolicy>
      </property>
      <property name="text">
-      <string>&lt;html&gt; Source code is available &lt;a href=&quot;https://github.com/pacman-ghost/asl_cards&quot;&gt;here&lt;/a&gt;. &lt;/html&gt;</string>
+      <string>&lt;html&gt; Source code is available &lt;a href=&quot;https://github.com/pacman-ghost/aslcards&quot;&gt;here&lt;/a&gt;. &lt;/html&gt;</string>
      </property>
      <property name="openExternalLinks">
       <bool>true</bool>

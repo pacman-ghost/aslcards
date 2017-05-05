@@ -235,6 +235,10 @@ class StartupWidget( QWidget ) :
     @pyqtSlot( str )
     def on_error( self , msg ) :
         """Show an error message box."""
+        msg = "<html> {}".format( msg ) \
+            + " <p>Check <a href='https://github.com/pacman-ghost/aslcards/#faq'>here</a> if you're having trouble analyzing your files." \
+            + " </html>"
+        msg = msg.replace( "\n" , "<br>\n" )
         MainWindow.show_error_msg( msg )
 
     @pyqtSlot( str , QMessageBox.StandardButtons , QMessageBox.StandardButton , result=QMessageBox.StandardButton )
@@ -260,7 +264,7 @@ class StartupWidget( QWidget ) :
         self.progress_animation.stop()
         # check if the analysis failed
         if ex :
-            MainWindow.show_error_msg( "Analyze failed:\n\n{}".format( ex  ) )
+            self.on_error( "Analyze failed:\n\n{}".format( ex  ) )
             self._update_analyze_ui( True )
             self.frm_analyze_progress.hide()
             self.le_cards_dir.setFocus()

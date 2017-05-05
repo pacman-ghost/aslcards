@@ -9,7 +9,7 @@ However, unless you print them out, it's difficult to quickly switch between the
 To run from source, you need Python 3, and some requirements:
 ```
 pip install -r requirements.txt
-pip install -r asl-cards/requirements.txt
+pip install -r asl_cards/requirements.txt
 python3 main.py
 ```
 
