@@ -7,16 +7,12 @@ However, unless you print them out, it's difficult to quickly switch between the
 ### Installing and running the program
 
 To run from source, you need Python 3, and some requirements:
-<code>
-pip install -r requirements.txt
-pip install -r asl-cards/requirements.txt
-python3 main.py
-</code>
+    pip install -r requirements.txt
+    pip install -r asl-cards/requirements.txt
+    python3 main.py
 
 If you want to compile it:
-<code>
-python3 _freeze.py --output /tmp/aslcards.tar.gz
-</code>
+    python3 _freeze.py --output /tmp/aslcards.tar.gz
 
 ### Analyzing the PDF files
 <img src="doc/analyze-files.png" width="300" align="left" hspace="10">The first time you run the program, it needs to analyze the PDF files, to extract each data card (this only needs to be done once).
