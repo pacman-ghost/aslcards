@@ -1,15 +1,29 @@
 # ASL Cards
 
-If you're a fan of [ASL](https://en.wikipedia.org/wiki/Advanced_Squad_Leader), then Chris Edward's [ASL Cards](http://aslcards.com) are a useful play tool. He provides PDF's with data cards for every AFV and Gun in the system, which are handy to reference as you play a scenario.
+If you're a fan of [ASL](https://en.wikipedia.org/wiki/Advanced_Squad_Leader), then Chris Edwards' [ASL Cards](http://aslcards.com) are a useful play tool. He provides PDF's with data cards for every AFV and Gun in the system, which are handy to reference as you play a scenario.
 
 However, unless you print them out, it's difficult to quickly switch between the ones you want, so I wrote this program that lets you pick out the ones you want, with a tabbed viewer that lets you quickly flip between them.
+
+### Installing and running the program
+
+To run from source, you need Python 3, and some requirements:
+<code>
+pip install -r requirements.txt
+pip install -r asl-cards/requirements.txt
+python3 main.py
+</code>
+
+If you want to compile it:
+<code>
+python3 _freeze.py --output /tmp/aslcards.tar.gz
+</code>
 
 ### Analyzing the PDF files
 <img src="doc/analyze-files.png" width="300" align="left" hspace="10">The first time you run the program, it needs to analyze the PDF files, to extract each data card (this only needs to be done once).
 
 Simply point to the directory where the files live, and click Analyze. This process can take some time to run, ~5-10 minutes at the lowest resolution, ~1 hour at the highest (so it might be a good idea to do a test run at the lowest resolution first).
 
-You need to have [Ghostscript](https://ghostscript.com/download/gsdnld.html) installed to do this.
+You need to have [Ghostscript](https://ghostscript.com/download/gsdnld.html) installed to do this (although once the database has been generated, Ghostscript is no longer required).
 <br clear="all">
 
 ### Selecting cards
