@@ -26,3 +26,6 @@ The program needs to know basic details about each card e.g. the name of the AFV
 
 #### Windows is complaining about a missing DLL
 You need the [VS 2015 Runtime](https://www.microsoft.com/en-us/download/details.aspx?id=48145) installed.
+
+#### Can I change the keyboard shortcuts used to flip between cards?
+Keyboard shortcuts can be used to flip between the cards of commonly-used nationalities e.g. ^G for the Germans, ^R for the Russians. These are defined in <tt>$/asl_cards/natinfo/natinfo.json</tt>, and you can change other nationality-based settings here as well.
